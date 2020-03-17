@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./nav.css";
 import Logo from "../../assets/solvector_logo.svg";
 import { Link } from "react-router-dom";

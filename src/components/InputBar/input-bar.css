@@ -1,0 +1,51 @@
+.input-bar {
+  width: 100%;
+  text-align: center;
+  height: 4.5vh;
+  min-height: 40px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.input-bar input {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--primary-color);
+  border-radius: 7px;
+  box-sizing: border-box;
+  background: white;
+  padding: 0 1em 0 1em;
+  font-size: 1em;
+}
+
+.input-bar button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  box-sizing: border-box;
+  background: var(--primary-color);
+  height: 100%;
+  width: 10%;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.input-bar button img {
+  height: 70%;
+  width: 80%;
+  margin: auto;
+}
+
+datalist {
+  background: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .input-bar button {
+    width: 15%;
+  }
+}
