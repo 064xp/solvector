@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Nav from "./components/Nav/Nav";
-import Home from "./components/Home/Home";
+import Home from "./views/Home/Home";
 
 function App() {
   return (

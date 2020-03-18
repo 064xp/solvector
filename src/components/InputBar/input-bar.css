@@ -40,10 +40,6 @@
   margin: auto;
 }
 
-datalist {
-  background: white;
-}
-
 @media only screen and (max-width: 600px) {
   .input-bar button {
     width: 15%;

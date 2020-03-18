@@ -1,5 +1,5 @@
 import React from "react";
-import InputBar from "../InputBar/InputBar";
+import InputBar from "../../components/InputBar/InputBar";
 import Operations from "../../functions/opList.js";
 import Logo from "../../assets/solvector_logo.svg";
 import "./home.css";
