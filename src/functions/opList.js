@@ -10,16 +10,19 @@
 
 const operations = [
   {
-    name: "Matrix Addition/Sum",
-    route: "/matrix/addition"
+    name: "Matrix Addition",
+    route: "/matrix/addition",
+    symbol: "+"
   },
   {
     name: "Matrix Subtraction",
-    route: "/matrix/subtraction"
+    route: "/matrix/subtraction",
+    symbol: "-"
   },
   {
     name: "Matrix Multiplication",
-    route: "/matrix/multiplication"
+    route: "/matrix/multiplication",
+    symbol: "x"
   }
 ];
 

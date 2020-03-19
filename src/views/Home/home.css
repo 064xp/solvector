@@ -14,3 +14,45 @@
     width: 60%;
   }
 }
+
+.home_solve-ops-container {
+  width: 80vw;
+  margin: 8vh auto 0 auto;
+}
+
+.home_card-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.home_solve-subtitle {
+  margin: 1em 0 0.2em 0;
+  font-size: 1.7em;
+  font-weight: lighter;
+  color: var(--secondary-darker);
+}
+
+.home_card {
+  width: 14vw;
+  min-width: 145px;
+  cursor: pointer;
+  margin: 1rem 5px 1rem 5px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .home_solve-ops-container {
+    width: 90vw;
+  }
+  .home_card {
+    width: 22vw;
+    font-size: calc(14px + 8 * ((100vw - 320px) / 960));
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .home_card {
+    width: 25vw;
+  }
+}
