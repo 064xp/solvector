@@ -1,14 +1,25 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
 import InputBar from "../../components/InputBar/InputBar";
 import TitleCard from "../../components/TitleCard/TitleCard";
 import Operations from "../../functions/opList.js";
 import Logo from "../../assets/solvector_logo.svg";
+import { setCurrentOperation } from "../../features/operations/operationsSlice";
 import "./home.css";
 
 const Home = props => {
+  const dispatch = useDispatch();
+
   const getSubmitValue = value => {
     console.log(`value ${value}`);
   };
+
+  const onCardClick = index => {
+    console.log(Operations[index]);
+    dispatch(setCurrentOperation(index));
+  };
+
   return (
     <div>
       <div className="home_input-bar-container">
@@ -28,6 +39,8 @@ const Home = props => {
               title={operation.name}
               symbol={operation.symbol}
               className="home_card"
+              index={index}
+              onCardClick={onCardClick}
             />
           ))}
         </div>

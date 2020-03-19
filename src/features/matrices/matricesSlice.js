@@ -1,18 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({
-  name: 'matrices',
+  name: "matrices",
   initialState: {
-    value: [],
+    matrices: []
   },
   reducers: {
-    push: (state, action)=> {
-      state.value.push(action.payload);
+    push: (state, action) => {
+      state.matrices.push(action.payload);
     },
     empty: state => {
-      state.value = [];
-    },
-  },
+      state.matrices = [];
+    }
+  }
 });
 
 export const { push, empty } = slice.actions;

@@ -3,9 +3,15 @@ import PropTypes from "prop-types";
 import "./titleCard.css";
 
 const TitleCard = props => {
-  const { title, symbol, className } = props;
+  const { title, symbol, className, index, onCardClick } = props;
+
   return (
-    <div className={`title-card ${className}`}>
+    <div
+      onClick={() => {
+        onCardClick(index);
+      }}
+      className={`title-card ${className}`}
+    >
       <h2>{title}</h2>
       <span>{symbol}</span>
     </div>
@@ -15,7 +21,9 @@ const TitleCard = props => {
 TitleCard.propTypes = {
   title: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string,
+  index: PropTypes.number,
+  onCardClick: PropTypes.func
 };
 
 export default TitleCard;
