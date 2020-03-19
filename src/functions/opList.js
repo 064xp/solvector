@@ -10,6 +10,11 @@
 
 const operations = [
   {
+    name: "Gauss Jordan",
+    route: "/matrix",
+    symbol: "GJ"
+  },
+  {
     name: "Matrix Addition",
     route: "/matrix",
     symbol: "+"
