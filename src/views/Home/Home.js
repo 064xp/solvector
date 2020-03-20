@@ -1,15 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import InputBar from "../../components/InputBar/InputBar";
 import TitleCard from "../../components/TitleCard/TitleCard";
-import Operations from "../../functions/opList.js";
 import Logo from "../../assets/solvector_logo.svg";
-import { setCurrentOperation } from "../../features/operations/operationsSlice";
+import { setCurrentOperation } from "../../features/operation/operationSlice";
 import "./home.css";
 
 const Home = props => {
+  const { operations } = props;
   const dispatch = useDispatch();
 
   const getSubmitValue = value => {
@@ -29,7 +30,7 @@ const Home = props => {
       <div className="home_input-bar-container">
         <img className="home_input-bar_logo" src={Logo} alt="Solvector" />
         <InputBar
-          list={Operations}
+          list={operations}
           placeholder="What do you want to solve?"
           getSubmitValue={getSubmitValue}
         />
@@ -37,10 +38,9 @@ const Home = props => {
       <div className="home_solve-ops-container">
         <h1 className="home_solve-subtitle">Solve:</h1>
         <div className="home_card-container">
-          {Operations.map((operation, index) => (
-            <Link to={operation.route}>
+          {operations.map((operation, index) => (
+            <Link key={index} to={operation.route}>
               <TitleCard
-                key={index}
                 title={operation.name}
                 symbol={operation.symbol}
                 className="home_card"
@@ -53,6 +53,10 @@ const Home = props => {
       </div>
     </div>
   );
+};
+
+Home.propTypes = {
+  operations: PropTypes.array.isRequired
 };
 
 export default Home;

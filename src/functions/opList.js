@@ -6,28 +6,71 @@
   rendering and in the autocomplete input field.
 
   route: is the react router route where this operation can be done.
+  symbol: Symbol to be displayed in the card
+  matrices: array with sample matrices, which are objects containing
+  rows, cols and the matrices
+  opString: Query string to be used in sample
 */
 
 const operations = [
   {
     name: "Gauss Jordan",
-    route: "/matrix",
+    route: "/gauss-jordan",
     symbol: "GJ"
   },
   {
     name: "Matrix Addition",
     route: "/matrix",
-    symbol: "+"
+    symbol: "+",
+    matrices: [
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+      },
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+      }
+    ],
+    opString: "A + B"
   },
   {
     name: "Matrix Subtraction",
     route: "/matrix",
-    symbol: "-"
+    symbol: "-",
+    matrices: [
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+      },
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [[10, 11, 12], [13, 14, 15], [16, 17, 18]]
+      }
+    ],
+    opString: "A - B"
   },
   {
     name: "Matrix Multiplication",
     route: "/matrix",
-    symbol: "x"
+    symbol: "x",
+    matrices: [
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+      },
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+      }
+    ],
+    opString: "A + B"
   }
 ];
 
