@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -8,16 +8,21 @@ import Matrix from "./views/Matrix/Matrix";
 import Operations from "./functions/opList.js";
 
 function App() {
+  const [selectedOperation, selectOperation] = useState(null);
   return (
     <Router>
       <div className="App">
         <Nav />
         <Switch>
           <Route exact path="/">
-            <Home operations={Operations} />
+            <Home operations={Operations} selectOperation={selectOperation} />
           </Route>
           <Route exact path="/matrix">
-            <Matrix operations={Operations} />
+            <Matrix
+              operations={Operations}
+              selectedOperation={selectedOperation}
+              selectOperation={selectOperation}
+            />
           </Route>
         </Switch>
       </div>

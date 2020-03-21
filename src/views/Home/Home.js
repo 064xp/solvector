@@ -1,17 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import InputBar from "../../components/InputBar/InputBar";
 import TitleCard from "../../components/TitleCard/TitleCard";
 import Logo from "../../assets/solvector_logo.svg";
-import { setCurrentOperation } from "../../features/operation/operationSlice";
 import "./home.css";
 
 const Home = props => {
-  const { operations } = props;
-  const dispatch = useDispatch();
+  const { operations, selectOperation } = props;
 
   const getSubmitValue = value => {
     console.log(`value ${value}`);
@@ -22,7 +19,7 @@ const Home = props => {
     Current operation is the index of the corresponding operation
     in the operations array in /src/functions/opList.js
     */
-    dispatch(setCurrentOperation(index));
+    selectOperation(index);
   };
 
   return (
@@ -56,7 +53,8 @@ const Home = props => {
 };
 
 Home.propTypes = {
-  operations: PropTypes.array.isRequired
+  operations: PropTypes.array.isRequired,
+  selectOperation: PropTypes.func.isRequired
 };
 
 export default Home;
