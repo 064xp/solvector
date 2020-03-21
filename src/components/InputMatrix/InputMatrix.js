@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import "./inputMatrix.css";
 
-const InputMatrix = ({ matrix, index }) => {
+const InputMatrix = ({ matrix, index, className }) => {
   const dispatch = useDispatch();
 
   let rows = [];
@@ -29,31 +29,35 @@ const InputMatrix = ({ matrix, index }) => {
   };
 
   return (
-    <table>
-      <tbody>
-        {rows.map((row, i) => (
-          <tr key={i}>
-            {rows[i].map((num, j) => (
-              <th key={j}>
-                <input
-                  type="text"
-                  value={matrix.matrix[i][j]}
-                  onChange={onMatrixChangeHandler.bind(this, i, j)}
-                  onFocus={e => e.target.select()}
-                />
-              </th>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className={`input-matrix ${className}`}>
+      <span className="input-matrix_brackets" />
+      <table>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i}>
+              {rows[i].map((num, j) => (
+                <th key={j}>
+                  <input
+                    type="text"
+                    value={matrix.matrix[i][j]}
+                    onChange={onMatrixChangeHandler.bind(this, i, j)}
+                    onFocus={e => e.target.select()}
+                  />
+                </th>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
 InputMatrix.propTypes = {
   initialValue: PropTypes.object,
   matrix: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired
+  index: PropTypes.number.isRequired,
+  className: PropTypes.string
 };
 
 export default InputMatrix;

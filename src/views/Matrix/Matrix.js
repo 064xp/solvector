@@ -41,7 +41,12 @@ const Matrix = props => {
     <div>
       <div className="matrix_matrices-container">
         {matrices.map((matrix, i) => (
-          <InputMatrix key={i} matrix={matrices[i]} index={i} />
+          <InputMatrix
+            key={i}
+            className="matrix_input-matrix"
+            matrix={matrices[i]}
+            index={i}
+          />
         ))}
       </div>
     </div>
