@@ -1,46 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { updateMatrix } from "../../features/matrices/matricesSlice";
-import { useDispatch } from "react-redux";
 
 import "./inputMatrix.css";
 
-const InputMatrix = ({ matrix, index, className }) => {
-  const dispatch = useDispatch();
-
-  let rows = [];
-  for (let i = 0; i < matrix.rows; i++) {
-    let row = [];
-    for (let j = 0; j < matrix.cols; j++) {
-      row[j] = matrix.matrix[i][j];
-    }
-    rows.push(row);
-  }
-
-  const onMatrixChangeHandler = (i, j, e) => {
-    dispatch(
-      updateMatrix({
-        row: i,
-        col: j,
-        value: e.target.value,
-        index
-      })
-    );
-  };
-
+const InputMatrix = ({ matrix, index, className, updateMatrix }) => {
   return (
     <div className={`input-matrix ${className}`}>
       <span className="input-matrix_brackets" />
       <table>
         <tbody>
-          {rows.map((row, i) => (
+          {matrix.matrix.map((row, i) => (
             <tr key={i}>
-              {rows[i].map((num, j) => (
+              {matrix.matrix[i].map((num, j) => (
                 <th key={j}>
                   <input
                     type="text"
                     value={matrix.matrix[i][j]}
-                    onChange={onMatrixChangeHandler.bind(this, i, j)}
+                    onChange={e => updateMatrix(index, i, j, e.target.value)}
                     onFocus={e => e.target.select()}
                   />
                 </th>
@@ -54,7 +30,7 @@ const InputMatrix = ({ matrix, index, className }) => {
 };
 
 InputMatrix.propTypes = {
-  initialValue: PropTypes.object,
+  updateMatrix: PropTypes.func.isRequired,
   matrix: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   className: PropTypes.string

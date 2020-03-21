@@ -1,41 +1,61 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
-import {
-  selectMatrices,
-  push,
-  empty,
-  addMatrix
-} from "../../features/matrices/matricesSlice";
-import {
-  selectCurrentOperation,
-  setCurrentOperation
-} from "../../features/operation/operationSlice";
 import "./matrix.css";
 
 const Matrix = props => {
-  const { operations } = props;
-  const dispatch = useDispatch();
-  const matrices = useSelector(selectMatrices);
-  const currentOperation = useSelector(selectCurrentOperation);
+  const { operations, selectedOperation, selectOperation } = props;
+  const [matrices, setMatrices] = useState([]);
 
   useEffect(() => {
-    if (currentOperation && matrices.length === 0) {
-      operations[currentOperation].matrices.forEach((matrix, index) => {
-        dispatch(push(matrix));
+    if (selectedOperation && matrices.length === 0) {
+      operations[selectedOperation].matrices.forEach((matrix, index) => {
+        pushMatrix(matrix);
       });
-      dispatch(setCurrentOperation(null));
-    } else if (matrices.length === 0) {
-      dispatch(addMatrix({ rows: 3, cols: 3 }));
+      selectOperation(null);
+    } else {
+      addMatrix(3, 3);
     }
 
     //When component unmounts, clear all matrices
     return function cleanup() {
-      dispatch(empty());
+      emptyMatrices();
     };
     //eslint-disable-next-line
-  }, [1]);
+  }, [0]);
+
+  const pushMatrix = matrix => {
+    let matricesTemp = matrices;
+    matricesTemp.push(matrix);
+    //We set the matrices to a copy so that React recongnizes a change
+    //and  re-renders the component
+    setMatrices([...matricesTemp]);
+  };
+
+  const addMatrix = (rows, cols) => {
+    let matrix = {
+      rows,
+      cols,
+      matrix: []
+    };
+    let row;
+
+    for (let i = 0; i < rows; i++) {
+      row = new Array(cols).fill(0);
+      matrix.matrix.push(row);
+    }
+    pushMatrix(matrix);
+  };
+
+  const updateMatrix = (index, row, col, value) => {
+    let matricesTemp = matrices;
+    matricesTemp[index].matrix[row][col] = value;
+    setMatrices([...matricesTemp]);
+  };
+
+  const emptyMatrices = () => {
+    setMatrices([]);
+  };
 
   return (
     <div>
@@ -45,6 +65,7 @@ const Matrix = props => {
             key={i}
             className="matrix_input-matrix"
             matrix={matrices[i]}
+            updateMatrix={updateMatrix}
             index={i}
           />
         ))}
@@ -54,7 +75,9 @@ const Matrix = props => {
 };
 
 Matrix.propTypes = {
-  operations: PropTypes.array.isRequired
+  operations: PropTypes.array.isRequired,
+  selectedOperation: PropTypes.number,
+  selectOperation: PropTypes.func.isRequired
 };
 
 export default Matrix;
