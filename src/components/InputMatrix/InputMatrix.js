@@ -32,6 +32,12 @@ const InputMatrix = ({
     //eslint-disable-next-line
   }, [matrix.rows, matrix.cols]);
 
+  const onChangeHandler = (i, j, e) => {
+    const value = e.target.value ? e.target.value : 0;
+    console.log(value);
+    updateMatrix(index, i, j, value);
+  };
+
   return (
     <div className={`input-matrix ${className}`}>
       <div className="input-matrix_table">
@@ -45,7 +51,7 @@ const InputMatrix = ({
                     <input
                       type="text"
                       value={matrix.matrix[i][j]}
-                      onChange={e => updateMatrix(index, i, j, e.target.value)}
+                      onChange={onChangeHandler.bind(this, i, j)}
                       onFocus={e => e.target.select()}
                     />
                   </th>
