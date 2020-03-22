@@ -57,6 +57,16 @@ const Matrix = props => {
     setMatrices([...matricesTemp]);
   };
 
+  const removeMatrix = index => {
+    if (matrices.length === 1) {
+      return;
+    }
+    let matricesTemp = matrices.filter(
+      (matrix, currentIndex) => currentIndex !== index
+    );
+    setMatrices([...matricesTemp]);
+  };
+
   return (
     <div className="matrix-view">
       <div className="matrix_matrices-container">
@@ -71,6 +81,7 @@ const Matrix = props => {
             index={i}
             matrixAmmount={matrices.length}
             addMatrix={addMatrix}
+            removeMatrix={removeMatrix}
           />
         ))}
       </div>

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import DimensionsInput from "./DimensionsInput";
 import { changeMatrixDimensions } from "../../functions/helperFunctions";
 import SvgPlusSolid from "../../assets/SvgPlusSolid.js";
+import SvgMinusSolid from "../../assets/SvgMinusSolid.js";
 import "./inputMatrix.css";
 
 const InputMatrix = ({
@@ -13,12 +14,14 @@ const InputMatrix = ({
   setDimensions,
   setMatrix,
   matrixAmmount,
-  addMatrix
+  addMatrix,
+  removeMatrix
 }) => {
   const [prevDimension, setPrevDimension] = useState({
     rows: matrix.rows,
     cols: matrix.cols
   });
+  const [isFocused, setFocus] = useState(false);
 
   //When dimensions change, update matrix to corresponding new dimensions
   useEffect(() => {
@@ -37,12 +40,24 @@ const InputMatrix = ({
 
   const onChangeHandler = (i, j, e) => {
     const value = e.target.value ? e.target.value : 0;
-    console.log(value);
     updateMatrix(index, i, j, value);
   };
 
   return (
-    <div className={`input-matrix ${className}`}>
+    <div
+      className={`input-matrix ${className}`}
+      onFocus={() => setFocus(true)}
+      onBlur={() => setFocus(false)}
+      onMouseEnter={() => setFocus(true)}
+      onMouseLeave={() => setFocus(false)}
+    >
+      <button
+        className="matrix-view_remove-button"
+        style={isFocused ? { opacity: 1 } : null}
+        onClick={() => removeMatrix(index)}
+      >
+        <SvgMinusSolid />
+      </button>
       <div className="input-matrix_table">
         <span className="input-matrix_brackets" />
         <table>
@@ -85,6 +100,7 @@ const InputMatrix = ({
 InputMatrix.propTypes = {
   updateMatrix: PropTypes.func.isRequired,
   addMatrix: PropTypes.func.isRequired,
+  removeMatrix: PropTypes.func.isRequired,
   setDimensions: PropTypes.func.isRequired,
   setMatrix: PropTypes.func.isRequired,
   matrix: PropTypes.object.isRequired,
