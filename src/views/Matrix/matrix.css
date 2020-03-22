@@ -3,10 +3,12 @@
 }
 
 .matrix_input-matrix {
-  width: 40vw;
+  width: 20rem;
 }
 
 .matrix_matrices-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  position: relative;
+  flex-wrap: wrap;
 }

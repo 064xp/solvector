@@ -69,6 +69,8 @@ const Matrix = props => {
             setDimensions={setDimensions}
             setMatrix={setMatrix}
             index={i}
+            matrixAmmount={matrices.length}
+            addMatrix={addMatrix}
           />
         ))}
       </div>

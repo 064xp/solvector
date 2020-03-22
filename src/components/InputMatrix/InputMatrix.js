@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import DimensionsInput from "./DimensionsInput";
 import { changeMatrixDimensions } from "../../functions/helperFunctions";
+import SvgPlusSolid from "../../assets/SvgPlusSolid.js";
 import "./inputMatrix.css";
 
 const InputMatrix = ({
@@ -10,7 +11,9 @@ const InputMatrix = ({
   className,
   updateMatrix,
   setDimensions,
-  setMatrix
+  setMatrix,
+  matrixAmmount,
+  addMatrix
 }) => {
   const [prevDimension, setPrevDimension] = useState({
     rows: matrix.rows,
@@ -67,17 +70,27 @@ const InputMatrix = ({
         cols={matrix.cols}
         setDimensions={setDimensions}
       />
+      {index === matrixAmmount - 1 ? (
+        <button
+          className="matrix-view_add-btn"
+          onClick={() => addMatrix(matrix.rows, matrix.cols)}
+        >
+          <SvgPlusSolid />
+        </button>
+      ) : null}
     </div>
   );
 };
 
 InputMatrix.propTypes = {
   updateMatrix: PropTypes.func.isRequired,
+  addMatrix: PropTypes.func.isRequired,
   setDimensions: PropTypes.func.isRequired,
   setMatrix: PropTypes.func.isRequired,
   matrix: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  matrixAmmount: PropTypes.number.isRequired
 };
 
 export default InputMatrix;

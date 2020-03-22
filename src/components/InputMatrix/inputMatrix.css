@@ -82,3 +82,40 @@
   font-size: 2rem;
   margin: 0 1.4rem;
 }
+
+.matrix-view_add-btn {
+  position: absolute;
+  right: -16%;
+  top: 20%;
+  background: none;
+  border: 3px solid var(--secondary-color);
+  color: var(--secondary-color);
+  width: 2rem;
+  min-width: 43px;
+  height: 2rem;
+  min-height: 43px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 150ms ease-in, color 150ms ease-in;
+}
+
+.matrix-view_add-btn svg {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.matrix-view_add-btn:hover {
+  background: var(--secondary-color);
+  color: white;
+}
+
+@media only screen and (max-width: 500px) {
+  .matrix-view_add-btn {
+    top: initial;
+    bottom: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
