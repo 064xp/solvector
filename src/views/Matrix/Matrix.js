@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
+import { buildMatrix } from "../../functions/helperFunctions";
 import "./matrix.css";
 
 const Matrix = props => {
@@ -19,10 +20,10 @@ const Matrix = props => {
 
     //When component unmounts, clear all matrices
     return function cleanup() {
-      emptyMatrices();
+      setMatrices([]);
     };
     //eslint-disable-next-line
-  }, [0]);
+  }, []);
 
   const pushMatrix = matrix => {
     let matricesTemp = matrices;
@@ -33,18 +34,8 @@ const Matrix = props => {
   };
 
   const addMatrix = (rows, cols) => {
-    let matrix = {
-      rows,
-      cols,
-      matrix: []
-    };
-    let row;
-
-    for (let i = 0; i < rows; i++) {
-      row = new Array(cols).fill(0);
-      matrix.matrix.push(row);
-    }
-    pushMatrix(matrix);
+    const newMatrix = buildMatrix(rows, cols);
+    pushMatrix(newMatrix);
   };
 
   const updateMatrix = (index, row, col, value) => {
@@ -53,12 +44,21 @@ const Matrix = props => {
     setMatrices([...matricesTemp]);
   };
 
-  const emptyMatrices = () => {
-    setMatrices([]);
+  const setMatrix = (index, matrix) => {
+    let matricesTemp = matrices;
+    matricesTemp[index] = matrix;
+    setMatrices([...matricesTemp]);
+  };
+
+  const setDimensions = (index, rows, cols) => {
+    let matricesTemp = matrices;
+    matrices[index].rows = rows;
+    matrices[index].cols = cols;
+    setMatrices([...matricesTemp]);
   };
 
   return (
-    <div>
+    <div className="matrix-view">
       <div className="matrix_matrices-container">
         {matrices.map((matrix, i) => (
           <InputMatrix
@@ -66,6 +66,8 @@ const Matrix = props => {
             className="matrix_input-matrix"
             matrix={matrices[i]}
             updateMatrix={updateMatrix}
+            setDimensions={setDimensions}
+            setMatrix={setMatrix}
             index={i}
           />
         ))}

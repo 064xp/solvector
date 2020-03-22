@@ -4,6 +4,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .input-matrix table {
@@ -11,7 +12,13 @@
   height: 100%;
 }
 
-.input-matrix_brackets::before {
+.input-matrix_table {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.input-matrix_table::before {
   content: "";
   position: absolute;
   z-index: 7;
@@ -26,7 +33,7 @@
   transform: translateY(-50%);
 }
 
-.input-matrix_brackets::after {
+.input-matrix_table::after {
   content: "";
   position: absolute;
   z-index: 7;
@@ -43,26 +50,35 @@
 
 .input-matrix input {
   border: 0;
+  border-bottom: 2px solid #d4d3d3;
   border-radius: 0;
-  width: 100%;
   height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-align: center;
+  width: 60%;
 }
 
 .input-matrix th {
   position: relative;
 }
 
-.input-matrix th::before {
-  content: "";
-  border-bottom: 2px solid #d4d3d3;
-  width: 40%;
-  height: 30%;
-  display: block;
-  position: absolute;
-  bottom: 4px;
-  right: 0;
-  left: 0;
-  margin: auto;
+.input-matrix_dimension-input {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  margin: 1rem 0 0 0;
+}
+
+.input-matrix_dimension-input input {
+  width: 20%;
+  border-color: var(--primary-color);
+  border-width: 0.2rem;
+  font-size: 1.8rem;
+}
+
+.input-matrix_dimension-input span {
+  font-size: 2rem;
+  margin: 0 1.4rem;
 }
