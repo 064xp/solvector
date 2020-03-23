@@ -8,6 +8,7 @@ const Matrix = props => {
   const { operations, selectedOperation, selectOperation } = props;
   const [matrices, setMatrices] = useState([]);
 
+  //When component mounts, push default matrices
   useEffect(() => {
     if (selectedOperation && matrices.length === 0) {
       operations[selectedOperation].matrices.forEach((matrix, index) => {
@@ -25,12 +26,26 @@ const Matrix = props => {
     //eslint-disable-next-line
   }, []);
 
-  const pushMatrix = matrix => {
-    let matricesTemp = matrices;
-    matricesTemp.push(matrix);
-    //We set the matrices to a copy so that React recongnizes a change
-    //and  re-renders the component
+  //When a matrix is added or deleted, assign letters
+  useEffect(() => {
+    const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+    let matricesTemp = matrices.map((matrix, index) => ({
+      ...matrix,
+      id: alphabet[index]
+    }));
     setMatrices([...matricesTemp]);
+    //eslint-disable-next-line
+  }, [matrices.length]);
+
+  const pushMatrix = matrix => {
+    if (matrices.length < 26) {
+      //max number of matrices is 26
+      let matricesTemp = matrices;
+      matricesTemp.push(matrix);
+      //We set the matrices to a copy so that React recongnizes a change
+      //and  re-renders the component
+      setMatrices([...matricesTemp]);
+    }
   };
 
   const addMatrix = (rows, cols) => {

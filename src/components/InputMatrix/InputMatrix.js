@@ -51,6 +51,7 @@ const InputMatrix = ({
       onMouseEnter={() => setFocus(true)}
       onMouseLeave={() => setFocus(false)}
     >
+      <h1 className="input-matrix_name">Matrix {matrix.id}</h1>
       <button
         className="matrix-view_remove-button"
         style={isFocused ? { opacity: 1 } : null}
