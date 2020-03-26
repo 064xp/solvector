@@ -16,11 +16,13 @@ const DimensionsInput = props => {
         type="number"
         value={rows}
         onChange={e => onChangeHandler(Number(e.target.value), cols)}
+        onFocus={e => e.target.select()}
       />
       <span>X</span>
       <input
         type="number"
         value={cols}
+        onFocus={e => e.target.select()}
         onChange={e => onChangeHandler(rows, Number(e.target.value))}
       />
     </div>
