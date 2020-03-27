@@ -69,7 +69,7 @@ const InputMatrix = ({
                   <th key={j}>
                     <input
                       type="text"
-                      value={matrix.matrix[i][j]}
+                      value={String(matrix.matrix[i][j]).replace(/^0+/, "")}
                       onChange={onChangeHandler.bind(this, i, j)}
                       onFocus={e => e.target.select()}
                     />
