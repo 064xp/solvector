@@ -1,5 +1,5 @@
 .home_input-bar-container {
-  width: 80vw;
+  width: 50vw;
   text-align: center;
   margin: 8vh auto 0 auto;
 }
@@ -12,6 +12,11 @@
 @media only screen and (max-width: 650px) {
   .home_input-bar_logo {
     width: 60%;
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .home_input-bar-container {
+    width: 80vw;
   }
 }
 
@@ -38,16 +43,19 @@
   width: 14vw;
   min-width: 145px;
   cursor: pointer;
-  margin: 1rem 5px 1rem 5px;
+  margin: 1rem 8px 1rem 8px;
+  font-size: calc(15px + 4 * ((100vw - 320px) / 960));
+  height: calc(170px + 4 * ((100vw - 320px) / 960));
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1400px) {
   .home_solve-ops-container {
     width: 90vw;
   }
   .home_card {
     width: 22vw;
-    font-size: calc(14px + 8 * ((100vw - 320px) / 960));
+    font-size: calc(12px + 5 * ((100vw - 320px) / 960));
+    height: calc(150px + 4 * ((100vw - 320px) / 960));
   }
 }
 

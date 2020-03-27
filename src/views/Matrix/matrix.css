@@ -4,6 +4,11 @@
 
 .matrix_input-matrix {
   width: 20rem;
+  margin: 3.5rem 1rem 2rem 1rem;
+}
+
+.matrix_input-matrix:last-child {
+  margin-bottom: 5rem;
 }
 
 .matrix_matrices-container {
@@ -11,10 +16,6 @@
   justify-content: center;
   position: relative;
   flex-wrap: wrap;
-}
-
-.matrix_matrices-container .matrix_input-matrix {
-  margin: 3.5rem 1rem;
 }
 
 .matrix-view_input-container {
@@ -58,5 +59,20 @@
 @media only screen and (max-width: 900px) {
   .matrix-view_input-container {
     width: 80vw;
+    margin-top: 1.5rem;
+  }
+
+  .matrix_input-matrix {
+    margin: 1rem;
+  }
+
+  .matrix-view_input-buttons {
+    width: 70vw;
+  }
+
+  .matrix-view_input-buttons button {
+    width: 5rem;
+    line-height: 1.7rem;
+    font-size: 1.8rem;
   }
 }
