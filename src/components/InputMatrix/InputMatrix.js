@@ -86,7 +86,7 @@ const InputMatrix = ({
         cols={matrix.cols}
         setDimensions={setDimensions}
       />
-      {index === matrixAmmount - 1 ? (
+      {index === matrixAmmount - 1 && matrixAmmount < 26 ? (
         <button
           className="matrix-view_add-btn"
           onClick={() => addMatrix(matrix.rows, matrix.cols)}
