@@ -16,3 +16,47 @@
 .matrix_matrices-container .matrix_input-matrix {
   margin: 3.5rem 1rem;
 }
+
+.matrix-view_input-container {
+  width: 40vw;
+  margin: 1rem auto;
+}
+
+.matrix-view_input-bar input {
+  text-transform: uppercase;
+}
+
+.matrix-view_input-buttons {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+}
+.matrix-view_input-buttons button {
+  background: white;
+  border: 2px solid #4a4949;
+  color: #4a4949;
+  font-size: 2.5rem;
+  border-radius: 4px;
+  line-height: 2rem;
+  margin: 0 0.5rem;
+  width: 6.5rem;
+  transition: background 200ms ease-in-out;
+  font-family: monospace;
+}
+
+.matrix-view_input-buttons button:hover {
+  background: #4a4949;
+  color: white;
+}
+
+@media only screen and (max-width: 1500px) {
+  .matrix-view_input-container {
+    width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .matrix-view_input-container {
+    width: 80vw;
+  }
+}

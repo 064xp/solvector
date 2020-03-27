@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { buildMatrix } from "../../functions/helperFunctions";
+import opList from "../../functions/opList";
+import InputBar from "../../components/InputBar/InputBar";
 import "./matrix.css";
 
 const Matrix = props => {
-  const { operations, selectedOperation, selectOperation } = props;
+  const { operations, selectedOperation } = props;
   const [matrices, setMatrices] = useState([]);
+  const [clickedOp, setClickedOp] = useState(null);
 
   //When component mounts, push default matrices
   useEffect(() => {
@@ -14,13 +17,12 @@ const Matrix = props => {
       operations[selectedOperation].matrices.forEach((matrix, index) => {
         pushMatrix(matrix);
       });
-      selectOperation(null);
     } else {
       addMatrix(3, 3);
     }
 
     //When component unmounts, clear all matrices
-    return function cleanup() {
+    return () => {
       setMatrices([]);
     };
     //eslint-disable-next-line
@@ -36,6 +38,10 @@ const Matrix = props => {
     setMatrices([...matricesTemp]);
     //eslint-disable-next-line
   }, [matrices.length]);
+
+  const onInputSubmit = input => {
+    console.log(input);
+  };
 
   const pushMatrix = matrix => {
     if (matrices.length < 26) {
@@ -99,6 +105,30 @@ const Matrix = props => {
             removeMatrix={removeMatrix}
           />
         ))}
+      </div>
+      <div className="matrix-view_input-container">
+        <div className="matrix-view_input-buttons">
+          {opList.map(op =>
+            op.route === "/matrix" ? (
+              <button
+                onClick={() => {
+                  setClickedOp(op.symbol);
+                }}
+              >
+                {op.displaySymbol}
+              </button>
+            ) : null
+          )}
+        </div>
+        <InputBar
+          getSubmitValue={onInputSubmit}
+          symbolToCat={clickedOp}
+          setSymbolToCat={setClickedOp}
+          initialValue={
+            selectedOperation ? operations[selectedOperation].opString : null
+          }
+          className={"matrix-view_input-bar"}
+        />
       </div>
     </div>
   );

@@ -6,7 +6,9 @@
   rendering and in the autocomplete input field.
 
   route: is the react router route where this operation can be done.
-  symbol: Symbol to be displayed in the card
+  displaySymbol: Symbol to be displayed on buttons or cards
+  symbol: Symbol used when button is clicked, might be different
+    for example: display: sin symbol: sin()
   matrices: array with sample matrices, which are objects containing
   rows, cols and the matrices
   opString: Query string to be used in sample
@@ -16,12 +18,13 @@ const operations = [
   {
     name: "Gauss Jordan",
     route: "/gauss-jordan",
-    symbol: "GJ"
+    displaySymbol: "GJ"
   },
   {
     name: "Matrix Addition",
     route: "/matrix",
     symbol: "+",
+    displaySymbol: "+",
     matrices: [
       {
         rows: 3,
@@ -40,6 +43,7 @@ const operations = [
     name: "Matrix Subtraction",
     route: "/matrix",
     symbol: "-",
+    displaySymbol: "−",
     matrices: [
       {
         rows: 3,
@@ -58,6 +62,7 @@ const operations = [
     name: "Matrix Multiplication",
     route: "/matrix",
     symbol: "x",
+    displaySymbol: "×",
     matrices: [
       {
         rows: 3,
@@ -70,7 +75,7 @@ const operations = [
         matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
       }
     ],
-    opString: "A + B"
+    opString: "A x B"
   }
 ];
 

@@ -27,7 +27,7 @@ const Home = props => {
       <div className="home_input-bar-container">
         <img className="home_input-bar_logo" src={Logo} alt="Solvector" />
         <InputBar
-          list={operations}
+          list={operations.matrix}
           placeholder="What do you want to solve?"
           getSubmitValue={getSubmitValue}
         />
@@ -39,7 +39,7 @@ const Home = props => {
             <Link key={index} to={operation.route}>
               <TitleCard
                 title={operation.name}
-                symbol={operation.symbol}
+                symbol={operation.displaySymbol}
                 className="home_card"
                 index={index}
                 onCardClick={onCardClick}
