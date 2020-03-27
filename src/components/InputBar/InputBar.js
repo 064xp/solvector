@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import PropTypes from "prop-types";
 import "./input-bar.css";
 import arrow from "../../assets/arrow-right-solid.svg";
 
-const InputBar = props => {
+const InputBar = forwardRef((props, ref) => {
   const {
     list,
     getSubmitValue,
@@ -14,7 +14,6 @@ const InputBar = props => {
     initialValue
   } = props;
   const [input, setInput] = useState("");
-  const inputFieldRef = useRef();
 
   useEffect(() => {
     if (initialValue) {
@@ -28,7 +27,6 @@ const InputBar = props => {
     }
     setInput(input + symbolToCat);
     setSymbolToCat(null);
-    inputFieldRef.current.focus();
     //eslint-disable-next-line
   }, [symbolToCat]);
 
@@ -50,7 +48,7 @@ const InputBar = props => {
         placeholder={placeholder}
         value={input}
         onChange={onChangeHandler}
-        ref={inputFieldRef}
+        ref={ref}
       />
       {list ? (
         <datalist id="data-list">
@@ -64,7 +62,7 @@ const InputBar = props => {
       </button>
     </form>
   );
-};
+});
 
 InputBar.propTypes = {
   list: PropTypes.array,

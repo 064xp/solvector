@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { buildMatrix } from "../../functions/helperFunctions";
@@ -10,6 +10,7 @@ const Matrix = props => {
   const { operations, selectedOperation } = props;
   const [matrices, setMatrices] = useState([]);
   const [clickedOp, setClickedOp] = useState(null);
+  const inputRef = useRef(null);
 
   //When component mounts, push default matrices
   useEffect(() => {
@@ -113,6 +114,11 @@ const Matrix = props => {
               <button
                 onClick={() => {
                   setClickedOp(op.symbol);
+                  /*We have to focus here on the onClick, because
+                    iOS Safari only supports focus() as a result of
+                    an event trigger (like click)
+                   */
+                  inputRef.current.focus();
                 }}
               >
                 {op.displaySymbol}
@@ -128,6 +134,7 @@ const Matrix = props => {
             selectedOperation ? operations[selectedOperation].opString : null
           }
           className={"matrix-view_input-bar"}
+          ref={inputRef}
         />
       </div>
     </div>
