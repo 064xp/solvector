@@ -61,7 +61,7 @@ const operations = [
   {
     name: "Matrix Multiplication",
     route: "/matrix",
-    symbol: "x",
+    symbol: "*",
     displaySymbol: "×",
     matrices: [
       {
@@ -75,7 +75,7 @@ const operations = [
         matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
       }
     ],
-    opString: "A x B"
+    opString: "A * B"
   }
 ];
 

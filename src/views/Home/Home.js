@@ -27,7 +27,7 @@ const Home = props => {
       <div className="home_input-bar-container">
         <img className="home_input-bar_logo" src={Logo} alt="Solvector" />
         <InputBar
-          list={operations.matrix}
+          list={operations}
           placeholder="What do you want to solve?"
           getSubmitValue={getSubmitValue}
         />
