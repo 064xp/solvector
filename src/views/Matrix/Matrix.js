@@ -4,6 +4,7 @@ import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { buildMatrix } from "../../functions/helperFunctions";
 import opList from "../../functions/opList";
 import InputBar from "../../components/InputBar/InputBar";
+import { infixToPostfix, constructTree } from "../../functions/expressionTree";
 import "./matrix.css";
 
 const Matrix = props => {
@@ -21,7 +22,6 @@ const Matrix = props => {
     } else {
       addMatrix(3, 3);
     }
-
     //When component unmounts, clear all matrices
     return () => {
       setMatrices([]);
@@ -39,10 +39,6 @@ const Matrix = props => {
     setMatrices([...matricesTemp]);
     //eslint-disable-next-line
   }, [matrices.length]);
-
-  const onInputSubmit = input => {
-    console.log(input);
-  };
 
   const pushMatrix = matrix => {
     if (matrices.length < 26) {
@@ -87,6 +83,11 @@ const Matrix = props => {
       (matrix, currentIndex) => currentIndex !== index
     );
     setMatrices([...matricesTemp]);
+  };
+
+  const onInputSubmit = input => {
+    input = infixToPostfix(input);
+    const expressionTree = constructTree(input);
   };
 
   return (
