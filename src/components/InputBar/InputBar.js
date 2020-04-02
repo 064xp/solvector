@@ -47,6 +47,7 @@ const InputBar = forwardRef((props, ref) => {
         placeholder={placeholder}
         value={input}
         onChange={onChangeHandler}
+        onPaste={onChangeHandler}
         ref={ref}
       />
       {list ? (

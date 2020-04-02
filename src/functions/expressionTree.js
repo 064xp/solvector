@@ -131,6 +131,10 @@ export const constructTree = postfixTokens => {
   return stack[0];
 };
 
+/*
+  To solve the tree we do a Post Order tree traversal, evaluating
+  subtrees first, then applying the current node's operation
+*/
 export const solveMatrixExpression = (root, matrices) => {
   if (isFunction(root.value) || isOperator(root.value)) {
     const left = solveMatrixExpression(root.left, matrices);
