@@ -4,7 +4,11 @@ import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { buildMatrix } from "../../functions/helperFunctions";
 import opList from "../../functions/opList";
 import InputBar from "../../components/InputBar/InputBar";
-import { infixToPostfix, constructTree } from "../../functions/expressionTree";
+import {
+  infixToPostfix,
+  constructTree,
+  solveMatrixExpression
+} from "../../functions/expressionTree";
 import "./matrix.css";
 
 const Matrix = props => {
@@ -58,7 +62,7 @@ const Matrix = props => {
 
   const updateMatrix = (index, row, col, value) => {
     let matricesTemp = matrices;
-    matricesTemp[index].matrix[row][col] = value;
+    matricesTemp[index].matrix[row][col] = Number(value);
     setMatrices([...matricesTemp]);
   };
 
@@ -88,6 +92,8 @@ const Matrix = props => {
   const onInputSubmit = input => {
     input = infixToPostfix(input);
     const expressionTree = constructTree(input);
+    const result = solveMatrixExpression(expressionTree, matrices);
+    console.log(result);
   };
 
   return (

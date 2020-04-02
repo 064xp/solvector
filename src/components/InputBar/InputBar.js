@@ -36,7 +36,6 @@ const InputBar = forwardRef((props, ref) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    setInput("");
     getSubmitValue(input);
   };
 

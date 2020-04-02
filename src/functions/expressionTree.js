@@ -4,7 +4,7 @@ import operationFunctions from "./operationFunctions";
   from infix notation to postfix
   https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 */
-const infixToPostfix = infix => {
+export const infixToPostfix = infix => {
   //Separate string in to tokens
   const tokens = infix.match(/(\d+|[A-Z]+|[+\-/*^()])/gim);
   let postfix = [];
@@ -115,7 +115,7 @@ const createNewNode = value => {
   return node;
 };
 
-const constructTree = postfixTokens => {
+export const constructTree = postfixTokens => {
   let stack = [];
 
   postfixTokens.forEach(token => {
@@ -131,4 +131,22 @@ const constructTree = postfixTokens => {
   return stack[0];
 };
 
-export { infixToPostfix, constructTree };
+export const solveMatrixExpression = (root, matrices) => {
+  if (isFunction(root.value) || isOperator(root.value)) {
+    const left = solveMatrixExpression(root.left, matrices);
+    const right = solveMatrixExpression(root.right, matrices);
+    //Do corresponding operation on the result of the sub trees
+    const result = operationFunctions["matrix"][root.value].call(
+      null,
+      left,
+      right
+    );
+    return result;
+  } else if (!isNaN(root.value)) {
+    //if node is a number
+    return root.value;
+  } else {
+    //If node is a matrix ID
+    return matrices[root.value.charCodeAt(0) - 65];
+  }
+};
