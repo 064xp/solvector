@@ -90,10 +90,14 @@ const Matrix = props => {
   };
 
   const onInputSubmit = input => {
-    input = infixToPostfix(input);
-    const expressionTree = constructTree(input);
-    const result = solveMatrixExpression(expressionTree, matrices);
-    console.log(result);
+    if (input === "") {
+      //Input is empty
+    } else {
+      input = infixToPostfix(input);
+      const expressionTree = constructTree(input);
+      const result = solveMatrixExpression(expressionTree, matrices);
+      console.log(result);
+    }
   };
 
   return (
