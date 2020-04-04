@@ -15,7 +15,9 @@ const InputMatrix = ({
   setMatrix,
   matrixAmmount,
   addMatrix,
-  removeMatrix
+  removeMatrix,
+  readOnly = false,
+  title
 }) => {
   const [prevDimension, setPrevDimension] = useState({
     rows: matrix.rows,
@@ -25,16 +27,18 @@ const InputMatrix = ({
 
   //When dimensions change, update matrix to corresponding new dimensions
   useEffect(() => {
-    let newMatrix = changeMatrixDimensions(
-      matrix,
-      prevDimension.rows,
-      prevDimension.cols
-    );
-    setMatrix(index, newMatrix);
-    setPrevDimension({
-      rows: matrix.rows,
-      cols: matrix.cols
-    });
+    if (!readOnly) {
+      let newMatrix = changeMatrixDimensions(
+        matrix,
+        prevDimension.rows,
+        prevDimension.cols
+      );
+      setMatrix(index, newMatrix);
+      setPrevDimension({
+        rows: matrix.rows,
+        cols: matrix.cols
+      });
+    }
     //eslint-disable-next-line
   }, [matrix.rows, matrix.cols]);
 
@@ -51,14 +55,18 @@ const InputMatrix = ({
       onMouseEnter={() => setFocus(true)}
       onMouseLeave={() => setFocus(false)}
     >
-      <h1 className="input-matrix_name">Matrix {matrix.id}</h1>
-      <button
-        className="matrix-view_remove-button"
-        style={isFocused ? { opacity: 1 } : null}
-        onClick={() => removeMatrix(index)}
-      >
-        <SvgMinusSolid />
-      </button>
+      <h1 className="input-matrix_name">
+        {title ? title : `Matrix ${matrix.id}`}
+      </h1>
+      {readOnly ? null : (
+        <button
+          className="matrix-view_remove-button"
+          style={isFocused ? { opacity: 1 } : null}
+          onClick={() => removeMatrix(index)}
+        >
+          <SvgMinusSolid />
+        </button>
+      )}
       <div className="input-matrix_table">
         <span className="input-matrix_brackets" />
         <table>
@@ -72,6 +80,7 @@ const InputMatrix = ({
                       value={String(matrix.matrix[i][j]).replace(/^0+/, "")}
                       onChange={onChangeHandler.bind(this, i, j)}
                       onFocus={e => e.target.select()}
+                      readOnly={readOnly}
                     />
                   </th>
                 ))}
@@ -80,12 +89,14 @@ const InputMatrix = ({
           </tbody>
         </table>
       </div>
-      <DimensionsInput
-        index={index}
-        rows={matrix.rows}
-        cols={matrix.cols}
-        setDimensions={setDimensions}
-      />
+      {readOnly ? null : (
+        <DimensionsInput
+          index={index}
+          rows={matrix.rows}
+          cols={matrix.cols}
+          setDimensions={setDimensions}
+        />
+      )}
       {index === matrixAmmount - 1 && matrixAmmount < 26 ? (
         <button
           className="matrix-view_add-btn"
@@ -107,7 +118,9 @@ InputMatrix.propTypes = {
   matrix: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   className: PropTypes.string,
-  matrixAmmount: PropTypes.number.isRequired
+  matrixAmmount: PropTypes.number.isRequired,
+  readOnly: PropTypes.bool,
+  title: PropTypes.string
 };
 
 export default InputMatrix;

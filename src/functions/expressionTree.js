@@ -27,10 +27,7 @@ export const infixToPostfix = infix => {
           postfix.push(temp);
         } else {
           //stack is empty
-          throw new Error(
-            "MismatchedParenthesis",
-            "There are mismatched parenthesis in the expresison"
-          );
+          throw new Error("There are mismatched parenthesis in the expresison");
         }
       } //end while
       stack.pop(); //Pop left parenthesis
@@ -50,10 +47,7 @@ export const infixToPostfix = infix => {
   while (stack.length !== 0) {
     temp = stack.pop();
     if (temp === "(" || temp === ")") {
-      throw new Error(
-        "MismatchedParenthesis",
-        "There are mismatched parenthesis in the expresison"
-      );
+      throw new Error("There are mismatched parenthesis in the expresison");
     }
     postfix.push(temp);
   }

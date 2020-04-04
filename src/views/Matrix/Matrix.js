@@ -15,6 +15,7 @@ const Matrix = props => {
   const { operations, selectedOperation } = props;
   const [matrices, setMatrices] = useState([]);
   const [clickedOp, setClickedOp] = useState(null);
+  const [result, setResult] = useState(null);
   const inputRef = useRef(null);
 
   //When component mounts, push default matrices
@@ -96,7 +97,7 @@ const Matrix = props => {
       input = infixToPostfix(input);
       const expressionTree = constructTree(input);
       const result = solveMatrixExpression(expressionTree, matrices);
-      console.log(result);
+      setResult(result);
     }
   };
 
@@ -147,6 +148,16 @@ const Matrix = props => {
           className={"matrix-view_input-bar"}
           ref={inputRef}
         />
+      </div>
+      <div className="matrix-view_result">
+        {result ? (
+          <InputMatrix
+            matrix={result}
+            readOnly={true}
+            className={"matrix-view_result-matrix"}
+            title={"Result"}
+          />
+        ) : null}
       </div>
     </div>
   );

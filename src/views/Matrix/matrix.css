@@ -2,7 +2,8 @@
   /* margin-top: 2rem; */
 }
 
-.matrix_input-matrix {
+.matrix_input-matrix,
+.matrix-view_result-matrix {
   width: 20rem;
   margin: 3.5rem 1rem 2rem 1rem;
 }
@@ -75,4 +76,20 @@
     line-height: 1.7rem;
     font-size: 1.8rem;
   }
+}
+
+.matrix-view_result {
+  display: flex;
+  justify-content: center;
+}
+
+.matrix-view_result-matrix {
+  width: 30rem;
+  height: 16rem;
+  margin: 3.5rem 1rem 2rem 1rem;
+  font-size: 1.2rem;
+}
+
+.matrix-view_result-matrix input {
+  font-size: 1.8rem;
 }
