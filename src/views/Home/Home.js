@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import InputBar from "../../components/InputBar/InputBar";
 import TitleCard from "../../components/TitleCard/TitleCard";
@@ -9,9 +9,14 @@ import "./home.css";
 
 const Home = props => {
   const { operations, selectOperation } = props;
+  let history = useHistory();
 
   const getSubmitValue = value => {
-    console.log(`value ${value}`);
+    let operationIndex = operations.findIndex(
+      (op, index) => op.name.toUpperCase() === value.toUpperCase()
+    );
+    selectOperation(operationIndex);
+    history.push(operations[operationIndex].route);
   };
 
   const onCardClick = index => {
