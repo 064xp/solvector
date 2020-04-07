@@ -2,7 +2,8 @@ export const buildMatrix = (rows, cols) => {
   let matrix = {
     matrix: [],
     rows,
-    cols
+    cols,
+    id: ""
   };
   let row;
   for (let i = 0; i < rows; i++) {
@@ -14,6 +15,7 @@ export const buildMatrix = (rows, cols) => {
 
 export const changeMatrixDimensions = (matrix, prevRows, prevCols) => {
   let newMatrix = buildMatrix(matrix.rows, matrix.cols);
+  newMatrix.id = matrix.id;
   //if the new size is larger
   if (matrix.rows > prevRows || matrix.cols > prevCols) {
     for (let i = 0; i < prevRows; i++) {
