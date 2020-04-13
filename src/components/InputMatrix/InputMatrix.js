@@ -77,7 +77,7 @@ const InputMatrix = ({
                   <th key={j}>
                     <input
                       type="text"
-                      value={String(matrix.matrix[i][j]).replace(/^0+/, "")}
+                      value={String(matrix.matrix[i][j])}
                       onChange={onChangeHandler.bind(this, i, j)}
                       onFocus={e => e.target.select()}
                       readOnly={readOnly}

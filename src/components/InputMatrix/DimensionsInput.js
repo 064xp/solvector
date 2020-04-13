@@ -14,7 +14,7 @@ const DimensionsInput = props => {
     <div className="input-matrix_dimension-input">
       <input
         type="number"
-        value={String(rows).replace(/^0+/, "")}
+        value={String(rows)}
         onChange={e => onChangeHandler(Number(e.target.value), cols)}
         onFocus={e => e.target.select()}
         inputMode="numeric"
@@ -22,7 +22,7 @@ const DimensionsInput = props => {
       <span>X</span>
       <input
         type="number"
-        value={String(cols).replace(/^0+/, "")}
+        value={String(cols)}
         onChange={e => onChangeHandler(rows, Number(e.target.value))}
         onFocus={e => e.target.select()}
         inputMode="numeric"
