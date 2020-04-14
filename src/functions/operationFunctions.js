@@ -1,4 +1,10 @@
 import { buildMatrix } from "./helperFunctions";
+import {
+  addFractions,
+  subtractFractions,
+  multiplyFractions,
+  divideFractions
+} from "./fractions";
 
 const operations = {
   matrix: {
@@ -10,7 +16,7 @@ const operations = {
       }
       for (let i = 0; i < m1.rows; i++) {
         for (let j = 0; j < m1.cols; j++) {
-          result.matrix[i][j] = m1.matrix[i][j] + m2.matrix[i][j];
+          result.matrix[i][j] = addFractions(m1.matrix[i][j], m2.matrix[i][j]);
         }
       }
       return result;
