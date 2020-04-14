@@ -63,7 +63,7 @@ const Matrix = props => {
 
   const updateMatrix = (index, row, col, value) => {
     let matricesTemp = matrices;
-    matricesTemp[index].matrix[row][col] = Number(value);
+    matricesTemp[index].matrix[row][col] = value;
     setMatrices([...matricesTemp]);
   };
 

@@ -5,9 +5,14 @@ export const buildMatrix = (rows, cols) => {
     cols,
     id: ""
   };
+  const zeroFraction = {
+    numerator: 0,
+    denominator: 1
+  };
+
   let row;
   for (let i = 0; i < rows; i++) {
-    row = new Array(cols).fill(0);
+    row = new Array(cols).fill({ ...zeroFraction });
     matrix.matrix.push(row);
   }
   return matrix;
@@ -32,4 +37,34 @@ export const changeMatrixDimensions = (matrix, prevRows, prevCols) => {
     }
   }
   return newMatrix;
+};
+
+export const fractionToString = fraction => {
+  let str = String(fraction.numerator);
+  if (fraction.denominator !== 1) {
+    str += "/" + fraction.denominator;
+  }
+  return str;
+};
+
+export const stringToFraction = str => {
+  const split = str.split("/");
+  let value = {
+    numerator: 0,
+    denominator: 1
+  };
+
+  value.numerator = str ? Number(split[0]) : 0;
+  value.denominator = split.length < 2 ? 1 : Number(split[1]);
+
+  //If nested fraction is input for ex. 2/3/5
+  if (split.length > 2) {
+    throw new Error("Nested fractions are not supported.");
+  }
+
+  if (value.denominator === 0) {
+    throw new Error("Denominator cannot be 0.");
+  }
+
+  return value;
 };

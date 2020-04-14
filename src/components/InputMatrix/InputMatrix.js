@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import DimensionsInput from "./DimensionsInput";
+import NumberInput from "./NumberInput";
 import { changeMatrixDimensions } from "../../functions/helperFunctions";
 import SvgPlusSolid from "../../assets/SvgPlusSolid.js";
 import SvgMinusSolid from "../../assets/SvgMinusSolid.js";
@@ -42,11 +43,6 @@ const InputMatrix = ({
     //eslint-disable-next-line
   }, [matrix.rows, matrix.cols]);
 
-  const onChangeHandler = (i, j, e) => {
-    const value = e.target.value ? e.target.value : 0;
-    updateMatrix(index, i, j, value);
-  };
-
   return (
     <div
       className={`input-matrix ${className}`}
@@ -75,11 +71,12 @@ const InputMatrix = ({
               <tr key={i}>
                 {matrix.matrix[i].map((num, j) => (
                   <th key={j}>
-                    <input
-                      type="text"
-                      value={String(matrix.matrix[i][j])}
-                      onChange={onChangeHandler.bind(this, i, j)}
-                      onFocus={e => e.target.select()}
+                    <NumberInput
+                      value={matrix.matrix[i][j]}
+                      updateMatrix={updateMatrix}
+                      index={index}
+                      row={i}
+                      col={j}
                       readOnly={readOnly}
                     />
                   </th>

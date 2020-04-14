@@ -1,3 +1,4 @@
+import { stringToFraction } from "./helperFunctions";
 /*
   List with all the possible operations
   An array of objects, each object is an operation
@@ -29,12 +30,20 @@ const operations = [
       {
         rows: 3,
         cols: 3,
-        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix: [
+          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
+          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
+          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+        ]
       },
       {
         rows: 3,
         cols: 3,
-        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix: [
+          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
+          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
+          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+        ]
       }
     ],
     opString: "A + B"
@@ -48,12 +57,32 @@ const operations = [
       {
         rows: 3,
         cols: 3,
-        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix: [
+          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
+          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
+          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+        ]
       },
       {
         rows: 3,
         cols: 3,
-        matrix: [[10, 11, 12], [13, 14, 15], [16, 17, 18]]
+        matrix: [
+          [
+            stringToFraction("10"),
+            stringToFraction("11"),
+            stringToFraction("12")
+          ],
+          [
+            stringToFraction("13"),
+            stringToFraction("14"),
+            stringToFraction("15")
+          ],
+          [
+            stringToFraction("16"),
+            stringToFraction("17"),
+            stringToFraction("18")
+          ]
+        ]
       }
     ],
     opString: "A - B"
@@ -67,12 +96,20 @@ const operations = [
       {
         rows: 3,
         cols: 3,
-        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix: [
+          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
+          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
+          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+        ]
       },
       {
         rows: 3,
         cols: 3,
-        matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix: [
+          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
+          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
+          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+        ]
       }
     ],
     opString: "A * B"
