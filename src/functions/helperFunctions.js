@@ -1,3 +1,5 @@
+import { Fraction } from "./fractions";
+
 export const buildMatrix = (rows, cols) => {
   let matrix = {
     matrix: [],
@@ -5,14 +7,10 @@ export const buildMatrix = (rows, cols) => {
     cols,
     id: ""
   };
-  const zeroFraction = {
-    numerator: 0,
-    denominator: 1
-  };
 
   let row;
   for (let i = 0; i < rows; i++) {
-    row = new Array(cols).fill({ ...zeroFraction });
+    row = new Array(cols).fill(new Fraction());
     matrix.matrix.push(row);
   }
   return matrix;
@@ -49,10 +47,7 @@ export const fractionToString = fraction => {
 
 export const stringToFraction = str => {
   const split = str.split("/");
-  let value = {
-    numerator: 0,
-    denominator: 1
-  };
+  let value = new Fraction();
 
   value.numerator = str ? Number(split[0]) : 0;
   value.denominator = split.length < 2 ? 1 : Number(split[1]);

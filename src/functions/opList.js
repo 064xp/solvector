@@ -1,4 +1,4 @@
-import { stringToFraction } from "./helperFunctions";
+import { Fraction } from "./fractions.js";
 /*
   List with all the possible operations
   An array of objects, each object is an operation
@@ -31,18 +31,18 @@ const operations = [
         rows: 3,
         cols: 3,
         matrix: [
-          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
-          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
-          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+          [new Fraction(1), new Fraction(2), new Fraction(3)],
+          [new Fraction(4), new Fraction(5), new Fraction(6)],
+          [new Fraction(7), new Fraction(8), new Fraction(9)]
         ]
       },
       {
         rows: 3,
         cols: 3,
         matrix: [
-          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
-          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
-          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+          [new Fraction(1), new Fraction(2), new Fraction(3)],
+          [new Fraction(4), new Fraction(5), new Fraction(6)],
+          [new Fraction(7), new Fraction(8), new Fraction(9)]
         ]
       }
     ],
@@ -58,30 +58,18 @@ const operations = [
         rows: 3,
         cols: 3,
         matrix: [
-          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
-          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
-          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+          [new Fraction(1), new Fraction(2), new Fraction(3)],
+          [new Fraction(4), new Fraction(5), new Fraction(6)],
+          [new Fraction(7), new Fraction(8), new Fraction(9)]
         ]
       },
       {
         rows: 3,
         cols: 3,
         matrix: [
-          [
-            stringToFraction("10"),
-            stringToFraction("11"),
-            stringToFraction("12")
-          ],
-          [
-            stringToFraction("13"),
-            stringToFraction("14"),
-            stringToFraction("15")
-          ],
-          [
-            stringToFraction("16"),
-            stringToFraction("17"),
-            stringToFraction("18")
-          ]
+          [new Fraction(10), new Fraction(11), new Fraction(12)],
+          [new Fraction(13), new Fraction(14), new Fraction(15)],
+          [new Fraction(16), new Fraction(17), new Fraction(18)]
         ]
       }
     ],
@@ -97,18 +85,18 @@ const operations = [
         rows: 3,
         cols: 3,
         matrix: [
-          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
-          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
-          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+          [new Fraction(1), new Fraction(2), new Fraction(3)],
+          [new Fraction(4), new Fraction(5), new Fraction(6)],
+          [new Fraction(7), new Fraction(8), new Fraction(9)]
         ]
       },
       {
         rows: 3,
         cols: 3,
         matrix: [
-          [stringToFraction("1"), stringToFraction("2"), stringToFraction("3")],
-          [stringToFraction("4"), stringToFraction("5"), stringToFraction("6")],
-          [stringToFraction("7"), stringToFraction("8"), stringToFraction("9")]
+          [new Fraction(1), new Fraction(2), new Fraction(3)],
+          [new Fraction(4), new Fraction(5), new Fraction(6)],
+          [new Fraction(7), new Fraction(8), new Fraction(9)]
         ]
       }
     ],
