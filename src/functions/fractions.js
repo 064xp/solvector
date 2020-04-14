@@ -1,6 +1,6 @@
 export const Fraction = function(numerator = 0, denominator = 1) {
   this.numerator = numerator;
-  this.denominator = denominator ? denominator : 1;
+  this.denominator = denominator === 0 ? 1 : denominator;
 };
 
 export const addFractions = (a, b) => {
@@ -39,8 +39,8 @@ export const divideFractions = (a, b) => {
 const simplifyFraction = fraction => {
   let i = 2;
 
-  while (i <= fraction.numerator) {
-    while (fraction.numerator % i == 0 && fraction.denominator % i == 0) {
+  while (i <= Math.abs(fraction.numerator)) {
+    while (fraction.numerator % i === 0 && fraction.denominator % i === 0) {
       fraction.numerator = fraction.numerator / i;
       fraction.denominator = fraction.denominator / i;
     }
