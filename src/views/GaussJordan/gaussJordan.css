@@ -1,5 +1,4 @@
 .GJ-input_container {
-  /* height: 40vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,8 +7,9 @@
 }
 
 .GJ-input_matrix {
-  width: 50vw;
+  width: 35vw;
   height: 30vh;
+  min-height: 220px;
   margin: auto;
 }
 
@@ -19,11 +19,21 @@
   color: white;
   width: 30%;
   height: 13%;
-  font-size: 1.4em;
+  font-size: min(max(25px, 5vw), 35px);
   border-radius: 5px;
   margin: 2rem;
 }
 
+@media only screen and (max-width: 1350px) {
+  .GJ-input_matrix {
+    width: 60vw;
+    height: 30vh;
+  }
+
+  .GJ-btn_solve {
+    width: 55%;
+  }
+}
 .GJ-result {
   width: 50vw;
   margin: auto;
@@ -42,27 +52,36 @@
 .GJ-result_values {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .GJ-result_values span {
-  font-size: min(max(14px, 6vw), 30px);
+  font-size: min(max(25px, 3vw), 35px);
   border-bottom: 0.2rem solid var(--primary-color);
-  margin: 1rem min(max(5px, 4vw), 30px);
+  margin: 1rem min(max(10px, 4vw), 30px);
 }
 
 .GJ-text_result {
-  font-weight: lighter;
+  font-weight: normal;
   text-align: center;
-  font-size: min(max(14px, 6vw), 30px);
+  font-size: min(max(25px, 6vw), 30px);
+  margin: 0.5rem 1rem;
 }
 
 @media only screen and (max-width: 1024px) {
-  .GJ-input_matrix {
-    width: 85vw;
-    height: 30vh;
-  }
-
   .GJ-result {
     width: 80vw;
+  }
+
+  .GJ-input_matrix {
+    width: 84vw;
+    height: 30vh;
+  }
+  .GJ-result_values span {
+    margin: 1rem min(max(3px, 3vw), 10px);
+  }
+
+  .GJ-btn_solve {
+    width: 70%;
   }
 }

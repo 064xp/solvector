@@ -46,5 +46,9 @@ const simplifyFraction = fraction => {
     }
     i++;
   }
+  if (fraction.denominator < 0) {
+    fraction.numerator *= -1;
+    fraction.denominator *= -1;
+  }
   return fraction;
 };

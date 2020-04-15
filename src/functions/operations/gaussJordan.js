@@ -6,19 +6,20 @@ import {
 } from "../fractions";
 
 const gaussJordan = matrix => {
-  let pivot = 0,
-    validationFail = null;
+  let pivot = 0;
+  let validationFail = null;
+  let resMatrix = JSON.parse(JSON.stringify(matrix)); //clone of the matrix to remove reference
   let modifier = new Fraction();
   let tempElement = new Fraction();
 
   //Swap rows in case first element is 0
-  if (matrix.matrix[0][0].numerator === 0) {
-    for (let i = 1; i <= matrix.rows; i++) {
-      if (matrix.matrix[i][0].numerator !== 0) {
-        for (let j = 0; j < matrix.cols; j++) {
-          tempElement = matrix.matrix[i][j];
-          matrix.matrix[i][j] = matrix.matrix[0][j];
-          matrix.matrix[0][j] = tempElement;
+  if (resMatrix.matrix[0][0].numerator === 0) {
+    for (let i = 1; i <= resMatrix.rows; i++) {
+      if (resMatrix.matrix[i][0].numerator !== 0) {
+        for (let j = 0; j < resMatrix.cols; j++) {
+          tempElement = resMatrix.matrix[i][j];
+          resMatrix.matrix[i][j] = resMatrix.matrix[0][j];
+          resMatrix.matrix[0][j] = tempElement;
         }
         break;
       }
@@ -26,22 +27,25 @@ const gaussJordan = matrix => {
   }
 
   //Make current pivot 1
-  for (let i = 0; i < matrix.rows; i++) {
-    modifier = matrix.matrix[i][i];
-    for (let j = 0; j < matrix.cols; j++) {
-      matrix.matrix[i][j] = divideFractions(matrix.matrix[i][j], modifier);
+  for (let i = 0; i < resMatrix.rows; i++) {
+    modifier = resMatrix.matrix[i][i];
+    for (let j = 0; j < resMatrix.cols; j++) {
+      resMatrix.matrix[i][j] = divideFractions(
+        resMatrix.matrix[i][j],
+        modifier
+      );
     }
 
     //Make the rest of the column 0
-    matrix = makeColZero(matrix, pivot);
+    resMatrix = makeColZero(resMatrix, pivot);
 
     pivot++;
 
-    if ((validationFail = validateMatrix(matrix))) {
+    if ((validationFail = validateMatrix(resMatrix))) {
       return validationFail;
     }
   } //End for rows
-  return getSolutions(matrix);
+  return getSolutions(resMatrix);
 };
 
 //Additional helper functions
