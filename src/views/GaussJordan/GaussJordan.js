@@ -8,12 +8,7 @@ import { Fraction } from "../../functions/fractions";
 
 const GaussJordan = props => {
   const [matrix, setMatrix] = useState(buildMatrix(3, 3));
-  const [results, setResults] = useState([
-    new Fraction(1),
-    new Fraction(2),
-    new Fraction(3)
-  ]);
-
+  const [results, setResults] = useState(null);
   const setDimensions = (rows, cols) => {
     setMatrix({ ...matrix, rows, cols });
   };
@@ -28,9 +23,7 @@ const GaussJordan = props => {
     setMatrix(buildMatrix(matrix.rows, matrix.cols));
   };
 
-  const solve = () => {
-    //solve
-  };
+  const solve = () => {};
 
   return (
     <React.Fragment>
@@ -48,7 +41,7 @@ const GaussJordan = props => {
           Solve!
         </button>
       </div>
-      {1 ? (
+      {results ? (
         <div className="GJ-result">
           <h2>Result:</h2>
           <div className="GJ-result_values">
