@@ -60,6 +60,5 @@ export const stringToFraction = str => {
   if (value.denominator === 0) {
     throw new Error("Denominator cannot be 0.");
   }
-
   return value;
 };

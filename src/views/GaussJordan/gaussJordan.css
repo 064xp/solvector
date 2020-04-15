@@ -1,4 +1,62 @@
-.gauss-jordan_input-matrix {
-  width: 40vw;
+.GJ-input_container {
+  /* height: 40vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.GJ-input_matrix {
+  width: 50vw;
+  height: 30vh;
   margin: auto;
+}
+
+.GJ-btn_solve {
+  background: var(--primary-color);
+  border: 0;
+  color: white;
+  width: 30%;
+  height: 13%;
+  font-size: 1.4em;
+  border-radius: 5px;
+  margin: 2rem;
+}
+
+.GJ-result {
+  width: 50vw;
+  margin: auto;
+  background: #e7e3e3;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.GJ-result h2 {
+  font-weight: lighter;
+  font-size: 1.6rem;
+  margin: 0 1.2rem;
+}
+
+.GJ-result_values {
+  display: flex;
+  justify-content: center;
+}
+
+.GJ-result_values span {
+  font-size: min(max(14px, 6vw), 30px);
+  border-bottom: 0.2rem solid var(--primary-color);
+  margin: 1rem min(max(5px, 4vw), 30px);
+}
+
+@media only screen and (max-width: 1024px) {
+  .GJ-input_matrix {
+    width: 85vw;
+    height: 30vh;
+  }
+
+  .GJ-result {
+    width: 80vw;
+  }
 }

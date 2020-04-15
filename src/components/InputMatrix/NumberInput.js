@@ -18,7 +18,7 @@ const NumberInput = props => {
     try {
       const value = stringToFraction(e.target.value);
 
-      if (index) {
+      if (index !== null) {
         updateMatrix(index, row, col, value);
       } else {
         updateMatrix(row, col, value);

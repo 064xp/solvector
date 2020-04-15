@@ -9,7 +9,7 @@ import "./inputMatrix.css";
 
 const InputMatrix = ({
   matrix, //Matrix with values to display
-  index, //Index of the matrix in the array of matrices
+  index = null, //Index of the matrix in the array of matrices
   className, //CSS Class
   updateMatrix, //Function to update a value at a position in the matrix
   setDimensions, //Set the dimensions of the matrix
