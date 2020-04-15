@@ -5,8 +5,8 @@ import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { buildMatrix, fractionToString } from "../../functions/helperFunctions";
 import gaussJordan from "../../functions/operations/gaussJordan";
 
-const GaussJordan = props => {
-  const [matrix, setMatrix] = useState(buildMatrix(3, 3));
+const GaussJordan = ({ defaultMatrix }) => {
+  const [matrix, setMatrix] = useState(defaultMatrix);
   const [results, setResults] = useState(null);
   const setDimensions = (rows, cols) => {
     setMatrix({ ...matrix, rows, cols });
@@ -22,7 +22,10 @@ const GaussJordan = props => {
     setMatrix(buildMatrix(matrix.rows, matrix.cols));
   };
 
-  const solve = () => {};
+  const solve = () => {
+    const solutions = gaussJordan(matrix);
+    setResults(solutions);
+  };
 
   return (
     <React.Fragment>
@@ -35,6 +38,7 @@ const GaussJordan = props => {
           removeMatrix={clearMatrix}
           className={"GJ-input_matrix"}
           augmentedAt={matrix.cols - 1}
+          title={"Matrix"}
         />
         <button className="GJ-btn_solve" onClick={solve}>
           Solve!

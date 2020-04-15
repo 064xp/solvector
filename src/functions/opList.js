@@ -19,7 +19,16 @@ const operations = [
   {
     name: "Gauss Jordan",
     route: "/gauss-jordan",
-    displaySymbol: "GJ"
+    displaySymbol: "GJ",
+    matrix: {
+      rows: 3,
+      cols: 4,
+      matrix: [
+        [new Fraction(1), new Fraction(-1), new Fraction(1), new Fraction(-1)],
+        [new Fraction(2), new Fraction(1), new Fraction(-1), new Fraction(4)],
+        [new Fraction(1), new Fraction(1), new Fraction(-2), new Fraction(4)]
+      ]
+    }
   },
   {
     name: "Matrix Addition",

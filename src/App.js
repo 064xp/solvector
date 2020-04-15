@@ -19,14 +19,10 @@ function App() {
             <Home operations={Operations} selectOperation={selectOperation} />
           </Route>
           <Route exact path="/matrix">
-            <Matrix
-              operations={Operations}
-              selectedOperation={selectedOperation}
-              selectOperation={selectOperation}
-            />
+            <Matrix defaultState={Operations[selectedOperation]} />
           </Route>
           <Route exact path="/gauss-jordan">
-            <GaussJordan />
+            <GaussJordan defaultMatrix={Operations[0].matrix} />
           </Route>
         </Switch>
       </div>

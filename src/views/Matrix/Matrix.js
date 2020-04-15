@@ -8,28 +8,13 @@ import { infixToPostfix, constructTree } from "../../functions/expressionTree";
 import solveMatrixExpression from "../../functions/operations/matrixOperations";
 import "./matrix.css";
 
-const Matrix = props => {
-  const { operations, selectedOperation } = props;
-  const [matrices, setMatrices] = useState([]);
+const Matrix = ({ defaultState = null }) => {
+  const [matrices, setMatrices] = useState(
+    defaultState ? defaultState.matrices : [buildMatrix(3, 3)]
+  );
   const [clickedOp, setClickedOp] = useState(null);
   const [result, setResult] = useState(null);
   const inputRef = useRef(null);
-
-  //When component mounts, push default matrices
-  useEffect(() => {
-    if (selectedOperation && matrices.length === 0) {
-      operations[selectedOperation].matrices.forEach((matrix, index) => {
-        pushMatrix(matrix);
-      });
-    } else {
-      addMatrix(3, 3);
-    }
-    //When component unmounts, clear all matrices
-    return () => {
-      setMatrices([]);
-    };
-    //eslint-disable-next-line
-  }, []);
 
   //When a matrix is added or deleted, assign letters
   useEffect(() => {
@@ -139,9 +124,7 @@ const Matrix = props => {
           getSubmitValue={onInputSubmit}
           symbolToCat={clickedOp}
           setSymbolToCat={setClickedOp}
-          initialValue={
-            selectedOperation ? operations[selectedOperation].opString : null
-          }
+          initialValue={defaultState ? defaultState.opString : null}
           className={"matrix-view_input-bar"}
           ref={inputRef}
         />
