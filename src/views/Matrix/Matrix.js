@@ -4,11 +4,8 @@ import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { buildMatrix } from "../../functions/helperFunctions";
 import opList from "../../functions/opList";
 import InputBar from "../../components/InputBar/InputBar";
-import {
-  infixToPostfix,
-  constructTree,
-  solveMatrixExpression
-} from "../../functions/expressionTree";
+import { infixToPostfix, constructTree } from "../../functions/expressionTree";
+import solveMatrixExpression from "../../functions/operations/matrixOperations";
 import "./matrix.css";
 
 const Matrix = props => {

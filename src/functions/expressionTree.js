@@ -1,4 +1,3 @@
-import operationFunctions from "./operationFunctions";
 /*
   Dijkstra's Shunting Yard Algorithm to convert an expression
   from infix notation to postfix
@@ -84,7 +83,7 @@ const associative = operator => {
   }
 };
 
-const isOperator = char => {
+export const isOperator = char => {
   return (
     char === "+" || char === "-" || char === "*" || char === "/" || char === "^"
   );
@@ -94,7 +93,7 @@ const isAlphaNum = str => {
   return str.match(/[0-9a-z]+/i) !== null;
 };
 
-const isFunction = str => {
+export const isFunction = str => {
   //here we would define functions to look out for, example sin(), cos(), tr()
   const functions = ["tr", "inv"];
   return str && functions.indexOf(str.toLowerCase()) > -1;
@@ -123,28 +122,4 @@ export const constructTree = postfixTokens => {
     stack.push(newNode);
   });
   return stack[0];
-};
-
-/*
-  To solve the tree we do a Post Order tree traversal, evaluating
-  subtrees first, then applying the current node's operation
-*/
-export const solveMatrixExpression = (root, matrices) => {
-  if (isFunction(root.value) || isOperator(root.value)) {
-    const left = solveMatrixExpression(root.left, matrices);
-    const right = solveMatrixExpression(root.right, matrices);
-    //Do corresponding operation on the result of the sub trees
-    const result = operationFunctions["matrix"][root.value].call(
-      null,
-      left,
-      right
-    );
-    return result;
-  } else if (!isNaN(root.value)) {
-    //if node is a number
-    return root.value;
-  } else {
-    //If node is a matrix ID
-    return matrices[root.value.charCodeAt(0) - 65];
-  }
 };

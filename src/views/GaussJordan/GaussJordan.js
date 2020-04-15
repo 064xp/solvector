@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import "./gaussJordan.css";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { buildMatrix, fractionToString } from "../../functions/helperFunctions";
-
-import { Fraction } from "../../functions/fractions";
+import gaussJordan from "../../functions/operations/gaussJordan";
 
 const GaussJordan = props => {
   const [matrix, setMatrix] = useState(buildMatrix(3, 3));
