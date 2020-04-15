@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Home from "./views/Home/Home";
 import Matrix from "./views/Matrix/Matrix";
+import GaussJordan from "./views/GaussJordan/GaussJordan";
 import Operations from "./functions/opList.js";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
               selectedOperation={selectedOperation}
               selectOperation={selectOperation}
             />
+          </Route>
+          <Route exact path="/gauss-jordan">
+            <GaussJordan />
           </Route>
         </Switch>
       </div>

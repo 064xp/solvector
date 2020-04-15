@@ -8,17 +8,18 @@ import SvgMinusSolid from "../../assets/SvgMinusSolid.js";
 import "./inputMatrix.css";
 
 const InputMatrix = ({
-  matrix,
-  index,
-  className,
-  updateMatrix,
-  setDimensions,
-  setMatrix,
-  matrixAmmount,
-  addMatrix,
-  removeMatrix,
-  readOnly = false,
-  title
+  matrix, //Matrix with values to display
+  index, //Index of the matrix in the array of matrices
+  className, //CSS Class
+  updateMatrix, //Function to update a value at a position in the matrix
+  setDimensions, //Set the dimensions of the matrix
+  setMatrix, //Set a matrix (overwrite)
+  matrixAmmount, //Ammount of matrices in the matrix array (to know if current is the last)
+  addMatrix, //Function to add a new matrix to the matrix array
+  removeMatrix, //Function to remove matrix from matrix array at a certain index
+  readOnly = false, //If the matrix is only to display results
+  title, //Custom title of the matrix
+  augmentedAt //If it is an augmented matrix, before which column the matrix is augmented
 }) => {
   const [prevDimension, setPrevDimension] = useState({
     rows: matrix.rows,
@@ -34,7 +35,13 @@ const InputMatrix = ({
         prevDimension.rows,
         prevDimension.cols
       );
-      setMatrix(index, newMatrix);
+      if (index) {
+        setMatrix(index, newMatrix);
+      } else {
+        //If it is an only matrix, like in gauss jordan
+        setMatrix(newMatrix);
+      }
+
       setPrevDimension({
         rows: matrix.rows,
         cols: matrix.cols
@@ -69,18 +76,31 @@ const InputMatrix = ({
           <tbody>
             {matrix.matrix.map((row, i) => (
               <tr key={i}>
-                {matrix.matrix[i].map((num, j) => (
-                  <th key={j}>
-                    <NumberInput
-                      value={matrix.matrix[i][j]}
-                      updateMatrix={updateMatrix}
-                      index={index}
-                      row={i}
-                      col={j}
-                      readOnly={readOnly}
-                    />
-                  </th>
-                ))}
+                {matrix.matrix[i].map((num, j) => {
+                  let returnVal = (
+                    <React.Fragment>
+                      <th key={j}>
+                        <NumberInput
+                          value={matrix.matrix[i][j]}
+                          updateMatrix={updateMatrix}
+                          index={index}
+                          row={i}
+                          col={j}
+                          readOnly={readOnly}
+                        />
+                        {augmentedAt - 1 === j ? (
+                          <i className="input-matrix_augmented-line"></i>
+                        ) : null}
+                      </th>
+                    </React.Fragment>
+                  );
+                  // if (augmentedAt === j && i === 0) {
+                  //   returnVal +=
+                  //     // <div className="input-matrix_augmented-line"></div>
+                  //     "hello";
+                  // }
+                  return returnVal;
+                })}
               </tr>
             ))}
           </tbody>
@@ -108,12 +128,12 @@ const InputMatrix = ({
 
 InputMatrix.propTypes = {
   updateMatrix: PropTypes.func.isRequired,
-  addMatrix: PropTypes.func.isRequired,
-  removeMatrix: PropTypes.func.isRequired,
+  addMatrix: PropTypes.func,
+  removeMatrix: PropTypes.func,
   setDimensions: PropTypes.func.isRequired,
   setMatrix: PropTypes.func.isRequired,
   matrix: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
   className: PropTypes.string,
   matrixAmmount: PropTypes.number.isRequired,
   readOnly: PropTypes.bool,

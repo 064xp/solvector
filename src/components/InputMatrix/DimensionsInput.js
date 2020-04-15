@@ -8,7 +8,11 @@ const DimensionsInput = props => {
     if (row < 0 || col < 0) {
       return;
     }
-    setDimensions(index, row, col);
+    if (index) {
+      setDimensions(index, row, col);
+    } else {
+      setDimensions(row, col);
+    }
   };
   return (
     <div className="input-matrix_dimension-input">

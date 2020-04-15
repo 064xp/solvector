@@ -17,7 +17,12 @@ const NumberInput = props => {
   const validateAndUpdate = e => {
     try {
       const value = stringToFraction(e.target.value);
-      updateMatrix(index, row, col, value);
+
+      if (index) {
+        updateMatrix(index, row, col, value);
+      } else {
+        updateMatrix(row, col, value);
+      }
     } catch (e) {
       //TODO. report error in matrix[index] at row, col
       console.log(e.message);

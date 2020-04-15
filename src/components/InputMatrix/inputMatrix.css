@@ -154,3 +154,11 @@ button svg {
   text-align: center;
   margin: 0;
 }
+
+.input-matrix_augmented-line {
+  position: absolute;
+  height: 105%;
+  width: 4px;
+  background: var(--primary-color);
+  right: 0;
+}
