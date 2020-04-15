@@ -1,5 +1,6 @@
 nav {
   min-height: 19px;
+  height: 3vh;
   border-bottom: 2px solid #c7c7c7;
   padding: 6px 3% 6px 3%;
   display: flex;
@@ -15,7 +16,7 @@ nav a {
 }
 
 .nav-logo {
-  height: 3vh;
+  height: 100%;
 }
 
 .nav-items {
