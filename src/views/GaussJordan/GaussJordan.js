@@ -47,13 +47,17 @@ const GaussJordan = ({ defaultMatrix }) => {
       {results ? (
         <div className="GJ-result">
           <h2>Result:</h2>
-          <div className="GJ-result_values">
-            {results.map((value, index) => (
-              <span>
-                X<sub>{index + 1}</sub> = {fractionToString(value)}
-              </span>
-            ))}
-          </div>
+          {typeof results === "object" ? (
+            <div className="GJ-result_values">
+              {results.map((value, index) => (
+                <span>
+                  X<sub>{index + 1}</sub> = {fractionToString(value)}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <h3 className="GJ-text_result">{results}</h3>
+          )}
         </div>
       ) : null}
     </React.Fragment>

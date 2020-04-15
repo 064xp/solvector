@@ -50,6 +50,12 @@
   margin: 1rem min(max(5px, 4vw), 30px);
 }
 
+.GJ-text_result {
+  font-weight: lighter;
+  text-align: center;
+  font-size: min(max(14px, 6vw), 30px);
+}
+
 @media only screen and (max-width: 1024px) {
   .GJ-input_matrix {
     width: 85vw;
