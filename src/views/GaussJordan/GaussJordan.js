@@ -64,4 +64,8 @@ const GaussJordan = ({ defaultMatrix }) => {
   );
 };
 
+GaussJordan.propTypes = {
+  defaultMatrix: PropTypes.object
+};
+
 export default GaussJordan;
