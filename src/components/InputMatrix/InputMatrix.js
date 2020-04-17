@@ -35,7 +35,7 @@ const InputMatrix = ({
         prevDimension.rows,
         prevDimension.cols
       );
-      if (index) {
+      if (index !== null) {
         setMatrix(index, newMatrix);
       } else {
         //If it is an only matrix, like in gauss jordan

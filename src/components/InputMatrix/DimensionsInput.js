@@ -8,7 +8,7 @@ const DimensionsInput = props => {
     if (row < 0 || col < 0) {
       return;
     }
-    if (index) {
+    if (index != null) {
       setDimensions(index, row, col);
     } else {
       setDimensions(row, col);
