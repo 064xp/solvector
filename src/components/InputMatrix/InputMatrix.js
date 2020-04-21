@@ -94,11 +94,6 @@ const InputMatrix = ({
                       </th>
                     </React.Fragment>
                   );
-                  // if (augmentedAt === j && i === 0) {
-                  //   returnVal +=
-                  //     // <div className="input-matrix_augmented-line"></div>
-                  //     "hello";
-                  // }
                   return returnVal;
                 })}
               </tr>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
-import { buildMatrix } from "../../functions/helperFunctions";
+import { buildMatrix, fractionToString } from "../../functions/helperFunctions";
 import opList from "../../functions/opList";
 import InputBar from "../../components/InputBar/InputBar";
 import { infixToPostfix, constructTree } from "../../functions/expressionTree";
@@ -129,16 +129,22 @@ const Matrix = ({ defaultState = null }) => {
           ref={inputRef}
         />
       </div>
-      <div className="matrix-view_result">
-        {result ? (
-          <InputMatrix
-            matrix={result}
-            readOnly={true}
-            className={"matrix-view_result-matrix"}
-            title={"Result"}
-          />
-        ) : null}
-      </div>
+      {result ? (
+        <div className="matrix-view_result">
+          {result.numerator || typeof result === "number" ? (
+            <h2 className="matrix-view_scalar-result">
+              <span>Result:</span> {fractionToString(result)}
+            </h2>
+          ) : (
+            <InputMatrix
+              matrix={result}
+              readOnly={true}
+              className={"matrix-view_result-matrix"}
+              title={"Result"}
+            />
+          )}
+        </div>
+      ) : null}
     </div>
   );
 };

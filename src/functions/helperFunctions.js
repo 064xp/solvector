@@ -38,6 +38,10 @@ export const changeMatrixDimensions = (matrix, prevRows, prevCols) => {
 };
 
 export const fractionToString = fraction => {
+  if (typeof fraction === "number") {
+    return String(fraction);
+  }
+
   let str = String(fraction.numerator);
   if (fraction.denominator !== 1) {
     str += "/" + fraction.denominator;

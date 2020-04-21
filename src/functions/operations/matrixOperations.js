@@ -65,20 +65,18 @@ const operations = {
   }, //end matrix multiplication
   scalar: {
     "*": (scalar, matrix) => {
-      let fractionScalar = new Fraction(scalar);
-      let resMatrix = buildMatrix(matrix.rows, matrix.cols);
-
-      if (typeof matrix === "number") {
+      if (matrix.numerator) {
         //if its 2 scalars
-        let secondScalar = new Fraction(matrix);
-        return multiplyFractions(fractionScalar, secondScalar);
+        return multiplyFractions(scalar, matrix);
       }
+
+      let resMatrix = buildMatrix(matrix.rows, matrix.cols);
 
       for (let i = 0; i < matrix.rows; i++) {
         for (let j = 0; j < matrix.cols; j++) {
           resMatrix.matrix[i][j] = multiplyFractions(
             matrix.matrix[i][j],
-            fractionScalar
+            scalar
           );
         }
       }
@@ -100,9 +98,9 @@ const solveMatrixExpression = (root, matrices) => {
 
     //Do corresponding operation on the result of the sub trees
     //If one of the values is a scalar
-    if (typeof left === "number" || typeof right === "number") {
+    if (left.numerator || right.numerator) {
       let scalar, matrix;
-      if (typeof left === "number") {
+      if (left.numerator) {
         scalar = left;
         matrix = right;
       } else {
@@ -116,7 +114,7 @@ const solveMatrixExpression = (root, matrices) => {
     return result;
   } else if (!isNaN(root.value)) {
     //if node is a number
-    return Number(root.value);
+    return new Fraction(root.value);
   } else {
     //If node is a matrix ID
     return matrices[root.value.charCodeAt(0) - 65];

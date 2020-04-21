@@ -93,3 +93,14 @@
 .matrix-view_result-matrix input {
   font-size: 1.8rem;
 }
+
+.matrix-view_scalar-result {
+  font-weight: normal;
+  font-size: min(max(20px, 2.8vw), 35px);
+  border-bottom: 0.2rem solid var(--primary-color);
+}
+
+.matrix-view_scalar-result span {
+  color: var(--primary-darker);
+  font-weight: bold;
+}
