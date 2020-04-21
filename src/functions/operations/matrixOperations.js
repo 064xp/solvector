@@ -62,7 +62,30 @@ const operations = {
       }
     }
     return result;
-  } //end matrix multiplication
+  }, //end matrix multiplication
+  scalar: {
+    "*": (scalar, matrix) => {
+      let fractionScalar = new Fraction(scalar);
+      let resMatrix = buildMatrix(matrix.rows, matrix.cols);
+
+      if (typeof matrix === "number") {
+        //if its 2 scalars
+        let secondScalar = new Fraction(matrix);
+        return multiplyFractions(fractionScalar, secondScalar);
+      }
+
+      for (let i = 0; i < matrix.rows; i++) {
+        for (let j = 0; j < matrix.cols; j++) {
+          resMatrix.matrix[i][j] = multiplyFractions(
+            matrix.matrix[i][j],
+            fractionScalar
+          );
+        }
+      }
+
+      return resMatrix;
+    } //end matrix scalar multiplication
+  }
 };
 
 /*
@@ -73,12 +96,27 @@ const solveMatrixExpression = (root, matrices) => {
   if (isFunction(root.value) || isOperator(root.value)) {
     const left = solveMatrixExpression(root.left, matrices);
     const right = solveMatrixExpression(root.right, matrices);
+    let result;
+
     //Do corresponding operation on the result of the sub trees
-    const result = operations[root.value].call(null, left, right);
+    //If one of the values is a scalar
+    if (typeof left === "number" || typeof right === "number") {
+      let scalar, matrix;
+      if (typeof left === "number") {
+        scalar = left;
+        matrix = right;
+      } else {
+        scalar = right;
+        matrix = left;
+      }
+      result = operations.scalar[root.value].call(null, scalar, matrix);
+    } else {
+      result = operations[root.value].call(null, left, right);
+    }
     return result;
   } else if (!isNaN(root.value)) {
     //if node is a number
-    return root.value;
+    return Number(root.value);
   } else {
     //If node is a matrix ID
     return matrices[root.value.charCodeAt(0) - 65];
