@@ -66,3 +66,7 @@ export const stringToFraction = str => {
   }
   return value;
 };
+
+export const cloneMatrix = matrix => {
+  return JSON.parse(JSON.stringify(matrix));
+};

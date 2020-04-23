@@ -74,7 +74,7 @@ const Matrix = ({ defaultState = null }) => {
 
   const onInputSubmit = input => {
     if (input === "") {
-      //Input is empty
+      //Input is empty show error message
     } else {
       input = infixToPostfix(input);
       const expressionTree = constructTree(input);
@@ -131,7 +131,7 @@ const Matrix = ({ defaultState = null }) => {
       </div>
       {result ? (
         <div className="matrix-view_result">
-          {result.numerator || typeof result === "number" ? (
+          {result.denominator || typeof result === "number" ? (
             <h2 className="matrix-view_scalar-result">
               <span>Result:</span> {fractionToString(result)}
             </h2>

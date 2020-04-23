@@ -1,9 +1,10 @@
-import { buildMatrix } from "../helperFunctions";
+import { buildMatrix, cloneMatrix } from "../helperFunctions";
 import { isFunction, isOperator } from "../expressionTree";
 import {
   addFractions,
   subtractFractions,
   multiplyFractions,
+  divideFractions,
   Fraction
 } from "../fractions";
 
@@ -63,7 +64,23 @@ const operations = {
     }
     return result;
   }, //end matrix multiplication
+  //Calculate matrix determinant
+  det: matrix => {
+    let determinant = matrix.matrix[0][0];
+    let upperTriangular = makeUpperTriangular(matrix);
+
+    for (let i = 1; i < matrix.rows; i++) {
+      determinant = multiplyFractions(
+        determinant,
+        upperTriangular.matrix[i][i]
+      );
+    }
+
+    return determinant;
+  },
+  //Scalar-Matrix operations
   scalar: {
+    //Scalar-matrix multiplication (or scalar-scalar multiplication)
     "*": (scalar, matrix) => {
       if (matrix.numerator) {
         //if its 2 scalars
@@ -91,14 +108,19 @@ const operations = {
   subtrees first, then applying the current node's operation
 */
 const solveMatrixExpression = (root, matrices) => {
-  if (isFunction(root.value) || isOperator(root.value)) {
+  if (root === null) {
+    return null;
+  } else if (isFunction(root.value) || isOperator(root.value)) {
     const left = solveMatrixExpression(root.left, matrices);
     const right = solveMatrixExpression(root.right, matrices);
     let result;
 
     //Do corresponding operation on the result of the sub trees
     //If one of the values is a scalar
-    if (left.numerator || right.numerator) {
+    if (
+      (left !== null && left.numerator) ||
+      (right !== null && right.numerator)
+    ) {
       let scalar, matrix;
       if (left.numerator) {
         scalar = left;
@@ -119,6 +141,37 @@ const solveMatrixExpression = (root, matrices) => {
     //If node is a matrix ID
     return matrices[root.value.charCodeAt(0) - 65];
   }
+};
+
+// Helper matrix functions
+
+const makeZeroBelow = (matrix, pivot) => {
+  let modifier = new Fraction();
+
+  if (pivot !== matrix.rows - 1) {
+    for (let i = pivot + 1; i < matrix.rows; i++) {
+      modifier = multiplyFractions(
+        new Fraction(-1),
+        divideFractions(matrix.matrix[i][pivot], matrix.matrix[pivot][pivot])
+      );
+      for (let j = 0; j < matrix.cols; j++) {
+        matrix.matrix[i][j] = addFractions(
+          matrix.matrix[i][j],
+          multiplyFractions(modifier, matrix.matrix[pivot][j])
+        );
+      }
+    }
+  }
+
+  return matrix;
+};
+
+const makeUpperTriangular = matrix => {
+  let temp = cloneMatrix(matrix);
+  for (let i = 0; i < matrix.rows; i++) {
+    temp = makeZeroBelow(temp, i);
+  }
+  return temp;
 };
 
 export default solveMatrixExpression;

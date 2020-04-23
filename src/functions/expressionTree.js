@@ -95,7 +95,7 @@ const isAlphaNum = str => {
 
 export const isFunction = str => {
   //here we would define functions to look out for, example sin(), cos(), tr()
-  const functions = ["tr", "inv"];
+  const functions = ["tr", "inv", "det"];
   return str && functions.indexOf(str.toLowerCase()) > -1;
 };
 

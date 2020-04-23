@@ -110,6 +110,24 @@ const operations = [
       }
     ],
     opString: "A * B"
+  },
+  {
+    name: "Matrix Determinant",
+    route: "/matrix",
+    symbol: "det()",
+    displaySymbol: "|A|",
+    matrices: [
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [
+          [new Fraction(1), new Fraction(2), new Fraction(3)],
+          [new Fraction(4), new Fraction(5), new Fraction(6)],
+          [new Fraction(7), new Fraction(8), new Fraction(9)]
+        ]
+      }
+    ],
+    opString: "det(a)"
   }
 ];
 

@@ -4,11 +4,12 @@ import {
   addFractions,
   multiplyFractions
 } from "../fractions";
+import { cloneMatrix } from "../helperFunctions";
 
 const gaussJordan = matrix => {
   let pivot = 0;
   let validationFail = null;
-  let resMatrix = JSON.parse(JSON.stringify(matrix)); //clone of the matrix to remove reference
+  let resMatrix = cloneMatrix(matrix); //clone of the matrix to remove reference
   let modifier = new Fraction();
   let tempElement = new Fraction();
 
