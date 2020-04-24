@@ -1,7 +1,3 @@
-.matrix-view {
-  /* margin-top: 2rem; */
-}
-
 .matrix_input-matrix,
 .matrix-view_result-matrix {
   width: 20rem;
@@ -33,6 +29,7 @@
   display: flex;
   justify-content: center;
 }
+
 .matrix-view_input-buttons button {
   background: white;
   border: 2px solid #4a4949;
@@ -44,6 +41,10 @@
   width: 6.5rem;
   transition: background 200ms ease-in-out;
   font-family: monospace;
+}
+
+.matrix-view_input-buttons-sm {
+  font-size: 1.6rem !important;
 }
 
 .matrix-view_input-buttons button:hover {

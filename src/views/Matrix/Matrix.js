@@ -106,6 +106,11 @@ const Matrix = ({ defaultState = null }) => {
           {opList.map(op =>
             op.route === "/matrix" ? (
               <button
+                className={
+                  op.displaySize
+                    ? `matrix-view_input-buttons-${op.displaySize}`
+                    : null
+                }
                 onClick={() => {
                   setClickedOp(op.symbol);
                   /*We have to focus here on the onClick, because

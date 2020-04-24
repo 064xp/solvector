@@ -8,6 +8,7 @@ import { Fraction } from "./fractions.js";
 
   route: is the react router route where this operation can be done.
   displaySymbol: Symbol to be displayed on buttons or cards
+  displaySize: Size when displayed, if symbol(s) is larger or longer
   symbol: Symbol used when button is clicked, might be different
     for example: display: sin symbol: sin()
   matrices: array with sample matrices, which are objects containing
@@ -115,7 +116,8 @@ const operations = [
     name: "Matrix Determinant",
     route: "/matrix",
     symbol: "det()",
-    displaySymbol: "|A|",
+    displaySymbol: "∣A∣",
+    displaySize: "sm",
     matrices: [
       {
         rows: 3,

@@ -45,7 +45,12 @@ const Home = props => {
               <TitleCard
                 title={operation.name}
                 symbol={operation.displaySymbol}
-                className="home_card"
+                className={
+                  "home_card " +
+                  (operation.displaySize
+                    ? `home_card-${operation.displaySize}`
+                    : null)
+                }
                 index={index}
                 onCardClick={onCardClick}
               />

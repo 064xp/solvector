@@ -45,7 +45,10 @@
   cursor: pointer;
   margin: 1rem 8px 1rem 8px;
   font-size: calc(15px + 4 * ((100vw - 320px) / 960));
-  height: calc(170px + 4 * ((100vw - 320px) / 960));
+  height: min(max(100px, 10vw), 400px);
+}
+.home_card-sm span {
+  font-size: min(max(50px, 3vw), 120px);
 }
 
 @media only screen and (max-width: 1400px) {
