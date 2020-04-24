@@ -50,5 +50,8 @@ const simplifyFraction = fraction => {
     fraction.numerator *= -1;
     fraction.denominator *= -1;
   }
+  if (fraction.numerator === 0) {
+    fraction.denominator = 1;
+  }
   return fraction;
 };

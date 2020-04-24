@@ -111,6 +111,7 @@ const Matrix = ({ defaultState = null }) => {
                     ? `matrix-view_input-buttons-${op.displaySize}`
                     : null
                 }
+                dangerouslySetInnerHTML={{ __html: op.displaySymbol }}
                 onClick={() => {
                   setClickedOp(op.symbol);
                   /*We have to focus here on the onClick, because
@@ -119,9 +120,7 @@ const Matrix = ({ defaultState = null }) => {
                    */
                   inputRef.current.focus();
                 }}
-              >
-                {op.displaySymbol}
-              </button>
+              ></button>
             ) : null
           )}
         </div>

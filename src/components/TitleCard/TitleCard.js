@@ -13,7 +13,7 @@ const TitleCard = props => {
       className={`title-card ${className}`}
     >
       <h2>{title}</h2>
-      <span>{symbol}</span>
+      <span dangerouslySetInnerHTML={{ __html: symbol }}></span>
     </div>
   );
 };

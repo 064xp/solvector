@@ -135,7 +135,7 @@ const operations = [
     name: "Matrix Inverse",
     route: "/matrix",
     symbol: "inv()",
-    displaySymbol: "A^-1",
+    displaySymbol: "A<sup>-1</sup>",
     displaySize: "sm",
     matrices: [
       {
