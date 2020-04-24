@@ -11,7 +11,7 @@ const Nav = props => {
       </Link>
       <ul className="nav-items">
         <li>
-          <Link to="#">About</Link>
+          <Link to="/about">About</Link>
         </li>
       </ul>
     </nav>
