@@ -14,7 +14,7 @@ export const infixToPostfix = infix => {
   for (let i = 0; i < tokens.length; i++) {
     currentToken = tokens[i];
     if (isFunction(currentToken)) {
-      stack.push(currentToken);
+      stack.push(currentToken.toLowerCase());
     } else if (isAlphaNum(currentToken)) {
       postfix.push(currentToken.toUpperCase());
     } else if (currentToken === "(") {
@@ -94,6 +94,7 @@ const isAlphaNum = str => {
 };
 
 export const isFunction = str => {
+  str = str.toLowerCase();
   //here we would define functions to look out for, example sin(), cos(), tr()
   const functions = ["tr", "inv", "det"];
   return str && functions.indexOf(str.toLowerCase()) > -1;
