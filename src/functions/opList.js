@@ -130,6 +130,25 @@ const operations = [
       }
     ],
     opString: "det(a)"
+  },
+  {
+    name: "Matrix Inverse",
+    route: "/matrix",
+    symbol: "inv()",
+    displaySymbol: "A^-1",
+    displaySize: "sm",
+    matrices: [
+      {
+        rows: 3,
+        cols: 3,
+        matrix: [
+          [new Fraction(2), new Fraction(2), new Fraction(3)],
+          [new Fraction(4), new Fraction(5), new Fraction(6)],
+          [new Fraction(7), new Fraction(8), new Fraction(9)]
+        ]
+      }
+    ],
+    opString: "inv(a)"
   }
 ];
 

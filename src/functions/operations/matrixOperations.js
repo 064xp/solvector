@@ -1,4 +1,9 @@
-import { buildMatrix, cloneMatrix } from "../helperFunctions";
+import {
+  buildMatrix,
+  cloneMatrix,
+  changeMatrixDimensions
+} from "../helperFunctions";
+import { gaussJordan } from "./gaussJordan";
 import { isFunction, isOperator } from "../expressionTree";
 import {
   addFractions,
@@ -77,6 +82,39 @@ const operations = {
     }
 
     return determinant;
+  },
+  //Calculate inverse matrix
+  inv: matrix => {
+    let augmentedMatrix = cloneMatrix(matrix);
+    let inverse = buildMatrix(matrix.rows, matrix.cols);
+    let determinant = operations.det(matrix);
+
+    if (determinant.numerator === 0) {
+      throw new Error("Matrix has no Inverse");
+    }
+
+    augmentedMatrix.cols = matrix.cols * 2;
+    augmentedMatrix = changeMatrixDimensions(
+      augmentedMatrix,
+      matrix.rows,
+      matrix.cols
+    );
+
+    for (let i = 0; i < matrix.rows; i++) {
+      for (let j = matrix.rows; j < matrix.cols * 2; j++) {
+        if (j - i == matrix.rows) {
+          augmentedMatrix.matrix[i][j] = new Fraction(1);
+        }
+      }
+    }
+    augmentedMatrix = gaussJordan(augmentedMatrix);
+
+    for (let i = 0; i < matrix.rows; i++) {
+      for (let j = 0; j < matrix.cols; j++) {
+        inverse.matrix[i][j] = augmentedMatrix.matrix[i][j + matrix.cols];
+      }
+    }
+    return inverse;
   },
   //Scalar-Matrix operations
   scalar: {

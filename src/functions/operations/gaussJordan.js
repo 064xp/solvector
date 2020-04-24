@@ -6,7 +6,7 @@ import {
 } from "../fractions";
 import { cloneMatrix } from "../helperFunctions";
 
-const gaussJordan = matrix => {
+export const gaussJordan = matrix => {
   let pivot = 0;
   let validationFail = null;
   let resMatrix = cloneMatrix(matrix); //clone of the matrix to remove reference
@@ -46,7 +46,7 @@ const gaussJordan = matrix => {
       return validationFail;
     }
   } //End for rows
-  return getSolutions(resMatrix);
+  return resMatrix;
 };
 
 //Additional helper functions
@@ -88,7 +88,7 @@ const makeColZero = (matrix, pivot) => {
   return matrix;
 };
 
-const getSolutions = reducedMatrix => {
+export const getSolutions = reducedMatrix => {
   let solutions = [];
   for (let i = 0; i < reducedMatrix.rows; i++) {
     solutions.push(reducedMatrix.matrix[i][reducedMatrix.cols - 1]);
