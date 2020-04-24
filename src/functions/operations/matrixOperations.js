@@ -116,6 +116,16 @@ const operations = {
     }
     return inverse;
   },
+  //Calculate matrix trace
+  tr: matrix => {
+    let trace = new Fraction(0);
+
+    for (let i = 0; i < matrix.rows; i++) {
+      trace = addFractions(trace, matrix.matrix[i][i]);
+    }
+    return trace;
+  },
+
   //Scalar-Matrix operations
   scalar: {
     //Scalar-matrix multiplication (or scalar-scalar multiplication)
