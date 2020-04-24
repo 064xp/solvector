@@ -102,7 +102,7 @@ const operations = {
 
     for (let i = 0; i < matrix.rows; i++) {
       for (let j = matrix.rows; j < matrix.cols * 2; j++) {
-        if (j - i == matrix.rows) {
+        if (j - i === matrix.rows) {
           augmentedMatrix.matrix[i][j] = new Fraction(1);
         }
       }
