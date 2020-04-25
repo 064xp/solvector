@@ -27,7 +27,7 @@
 
 .home_card-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   flex-wrap: wrap;
 }
