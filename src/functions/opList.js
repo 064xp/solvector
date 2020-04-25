@@ -154,7 +154,7 @@ const operations = [
     name: "Matrix Trace",
     route: "/matrix",
     symbol: "tr()",
-    displaySymbol: "tr()",
+    displaySymbol: "tr",
     displaySize: "sm",
     matrices: [
       {
