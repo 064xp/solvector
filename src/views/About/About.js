@@ -12,7 +12,7 @@ const About = props => {
       <p>
         This is a colaborative effort by: <br />
         <a href="https://github.com/064xp">Paulo Zamora</a>,{" "}
-        <a href="https://github.com/eojedagalavan">Eduardo Ojeda</a> and Gerardo
+        <a href="https://github.com/eojedagalvan">Eduardo Ojeda</a> and Gerardo
         Castruita. All algorithms were written by us and the UI was built using
         React.
       </p>
