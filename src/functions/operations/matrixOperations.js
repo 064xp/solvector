@@ -166,6 +166,8 @@ const operations = {
 const solveMatrixExpression = (root, matrices) => {
   if (root === null) {
     return null;
+  } else if (root === undefined) {
+    throw new Error("The expression is invalid.");
   } else if (isFunction(root.value) || isOperator(root.value)) {
     const left = solveMatrixExpression(root.left, matrices);
     const right = solveMatrixExpression(root.right, matrices);
