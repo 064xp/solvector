@@ -79,7 +79,6 @@ const Matrix = ({ defaultState = null }) => {
       input = infixToPostfix(input);
       const expressionTree = constructTree(input);
       const result = solveMatrixExpression(expressionTree, matrices);
-      console.log(result);
       setResult(result);
     }
   };

@@ -13,6 +13,10 @@ export const gaussJordan = matrix => {
   let modifier = new Fraction();
   let tempElement = new Fraction();
 
+  if ((validationFail = validateCols(matrix))) {
+    return validationFail;
+  }
+
   //Swap rows in case first element is 0
   if (resMatrix.matrix[0][0].numerator === 0) {
     for (let i = 1; i <= resMatrix.rows; i++) {
@@ -53,6 +57,8 @@ export const gaussJordan = matrix => {
 
 const validateMatrix = matrix => {
   let counter = 0;
+
+  //validate last row
   for (let j = 0; j < matrix.cols; j++) {
     if (matrix.matrix[matrix.rows - 1][j].numerator === 0) {
       counter++;
@@ -66,6 +72,23 @@ const validateMatrix = matrix => {
       return "The system has no solutions.";
     }
   }
+};
+
+const validateCols = matrix => {
+  let counter = 0;
+  //check for empty cols
+  for (let i = 0; i < matrix.cols; i++) {
+    counter = 0;
+    for (let j = 0; j < matrix.rows; j++) {
+      if (matrix.matrix[j][i].numerator === 0) {
+        counter++;
+      }
+    }
+    if (counter === matrix.rows) {
+      return `Invalid matrix, column ${i + 1} has no values`;
+    }
+  }
+  return null;
 };
 
 const makeColZero = (matrix, pivot) => {
@@ -89,6 +112,9 @@ const makeColZero = (matrix, pivot) => {
 };
 
 export const getSolutions = reducedMatrix => {
+  if (typeof reducedMatrix === "string") {
+    return reducedMatrix;
+  }
   let solutions = [];
   for (let i = 0; i < reducedMatrix.rows; i++) {
     solutions.push(reducedMatrix.matrix[i][reducedMatrix.cols - 1]);
