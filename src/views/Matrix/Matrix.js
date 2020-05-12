@@ -14,6 +14,7 @@ const Matrix = ({ defaultState = null }) => {
   );
   const [clickedOp, setClickedOp] = useState(null);
   const [result, setResult] = useState(null);
+  const [resultError, setResultError] = useState(null);
   const inputRef = useRef(null);
 
   //When a matrix is added or deleted, assign letters
@@ -76,10 +77,16 @@ const Matrix = ({ defaultState = null }) => {
     if (input === "") {
       //Input is empty show error message
     } else {
-      input = infixToPostfix(input);
-      const expressionTree = constructTree(input);
-      const result = solveMatrixExpression(expressionTree, matrices);
-      setResult(result);
+      setResultError(null);
+      try {
+        input = infixToPostfix(input);
+        const expressionTree = constructTree(input);
+        const result = solveMatrixExpression(expressionTree, matrices);
+        setResult(result);
+      } catch (error) {
+        setResultError(error.toString());
+        setResult(null);
+      }
     }
   };
 
@@ -147,6 +154,11 @@ const Matrix = ({ defaultState = null }) => {
               title={"Result"}
             />
           )}
+        </div>
+      ) : null}
+      {resultError ? (
+        <div className="matrix-view_result-error">
+          <h2>{resultError}</h2>
         </div>
       ) : null}
     </div>

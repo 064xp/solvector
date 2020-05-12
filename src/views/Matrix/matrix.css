@@ -60,27 +60,6 @@
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .matrix-view_input-container {
-    width: 80vw;
-    margin-top: 1.5rem;
-  }
-
-  .matrix_input-matrix {
-    margin: 1rem;
-  }
-
-  .matrix-view_input-buttons {
-    width: 100%;
-  }
-
-  .matrix-view_input-buttons button {
-    width: 5rem;
-    line-height: 1.7rem;
-    font-size: 1.8rem;
-  }
-}
-
 .matrix-view_result {
   display: flex;
   justify-content: center;
@@ -106,4 +85,44 @@
 .matrix-view_scalar-result span {
   color: var(--primary-darker);
   font-weight: bold;
+}
+
+.matrix-view_result-error {
+  background: var(--light-grey);
+  width: 45vw;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 7px;
+  color: black;
+  text-align: center;
+}
+
+.matrix-view_result-error h2 {
+  display: inline;
+  border-bottom: 0.2rem solid var(--primary-color);
+}
+
+@media only screen and (max-width: 900px) {
+  .matrix-view_input-container {
+    width: 80vw;
+    margin-top: 1.5rem;
+  }
+
+  .matrix_input-matrix {
+    margin: 1rem;
+  }
+
+  .matrix-view_input-buttons {
+    width: 100%;
+  }
+
+  .matrix-view_input-buttons button {
+    width: 5rem;
+    line-height: 1.7rem;
+    font-size: 1.8rem;
+  }
+
+  .matrix-view_result-error {
+    width: 80vw;
+  }
 }

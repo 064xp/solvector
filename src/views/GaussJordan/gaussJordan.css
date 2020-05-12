@@ -37,7 +37,7 @@
 .GJ-result {
   width: 50vw;
   margin: auto;
-  background: #e7e3e3;
+  background: var(--light-grey);
   padding: 1rem 0;
   box-sizing: border-box;
   border-radius: 10px;

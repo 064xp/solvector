@@ -195,7 +195,11 @@ const solveMatrixExpression = (root, matrices) => {
     return new Fraction(root.value);
   } else {
     //If node is a matrix ID
-    return matrices[root.value.charCodeAt(0) - 65];
+    let correspondingMatrix = matrices[root.value.charCodeAt(0) - 65];
+    if (correspondingMatrix === undefined) {
+      throw new Error(`'${root.value[0]}' is not a valid matrix.`);
+    }
+    return correspondingMatrix;
   }
 };
 
