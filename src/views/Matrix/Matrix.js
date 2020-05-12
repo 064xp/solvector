@@ -79,6 +79,7 @@ const Matrix = ({ defaultState = null }) => {
       input = infixToPostfix(input);
       const expressionTree = constructTree(input);
       const result = solveMatrixExpression(expressionTree, matrices);
+      console.log(result);
       setResult(result);
     }
   };
@@ -135,7 +136,7 @@ const Matrix = ({ defaultState = null }) => {
       </div>
       {result ? (
         <div className="matrix-view_result">
-          {result.denominator || typeof result === "number" ? (
+          {result.denominator !== undefined || typeof result === "number" ? (
             <h2 className="matrix-view_scalar-result">
               <span>Result:</span> {fractionToString(result)}
             </h2>
