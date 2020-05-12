@@ -36,8 +36,8 @@ const InputBar = forwardRef((props, ref) => {
     );
     setSymbolToCat(null);
 
-    //set caret to net position
-    //setTimeout is a hack so that the caretpos changes after the input is focused
+    //set caret to new position
+    //setTimeout is a hack so that the caretPos changes after the input is focused
     //since the focus() needs to be in the callback of the click event
     setTimeout(() => {
       let newCaretPos;

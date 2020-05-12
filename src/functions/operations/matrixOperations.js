@@ -147,7 +147,15 @@ const operations = {
       }
 
       return resMatrix;
-    } //end matrix scalar multiplication
+    }, //end matrix scalar multiplication
+    //Scalar division
+    "/": (scalar, scalar2) => {
+      if (scalar2.rows) {
+        //if its a matrix
+        throw new Error("Cannot divide matrices");
+      }
+      return divideFractions(scalar, scalar2);
+    } //end scalar division
   }
 };
 
