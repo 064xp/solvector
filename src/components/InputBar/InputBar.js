@@ -40,8 +40,16 @@ const InputBar = forwardRef((props, ref) => {
     //setTimeout is a hack so that the caretpos changes after the input is focused
     //since the focus() needs to be in the callback of the click event
     setTimeout(() => {
-      ref.current.selectionStart = caretPos + symbolToCat.length;
-      ref.current.selectionEnd = caretPos + symbolToCat.length;
+      let newCaretPos;
+      //If the symbol is a function, place caret inside parenthesis ex. det(|)
+      if (symbolToCat[symbolToCat.length - 1] === ")") {
+        newCaretPos = caretPos + symbolToCat.length - 1;
+      } else {
+        newCaretPos = caretPos + symbolToCat.length;
+      }
+
+      ref.current.selectionStart = newCaretPos;
+      ref.current.selectionEnd = newCaretPos;
     }, 1);
 
     //eslint-disable-next-line
