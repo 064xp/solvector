@@ -15,17 +15,19 @@ const NumberInput = props => {
   }, [value]);
 
   const validateAndUpdate = e => {
-    try {
-      const value = stringToFraction(e.target.value);
+    if (!readOnly) {
+      try {
+        const value = stringToFraction(e.target.value);
 
-      if (index !== null) {
-        updateMatrix(index, row, col, value);
-      } else {
-        updateMatrix(row, col, value);
+        if (index !== null) {
+          updateMatrix(index, row, col, value);
+        } else {
+          updateMatrix(row, col, value);
+        }
+      } catch (e) {
+        //TODO. report error in matrix[index] at row, col
+        console.log(e.message);
       }
-    } catch (e) {
-      //TODO. report error in matrix[index] at row, col
-      console.log(e.message);
     }
   };
 
