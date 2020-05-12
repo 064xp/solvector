@@ -21,12 +21,29 @@ const InputBar = forwardRef((props, ref) => {
     }
     //eslint-disable-next-line
   }, []);
+
+  // When insert operation button is pressed
   useEffect(() => {
     if (!symbolToCat) {
       return;
     }
-    setInput(input + symbolToCat);
+
+    let caretPos = ref.current.selectionStart;
+    setInput(
+      input.substring(0, caretPos) +
+        symbolToCat +
+        input.substring(caretPos, input.length)
+    );
     setSymbolToCat(null);
+
+    //set caret to net position
+    //setTimeout is a hack so that the caretpos changes after the input is focused
+    //since the focus() needs to be in the callback of the click event
+    setTimeout(() => {
+      ref.current.selectionStart = caretPos + symbolToCat.length;
+      ref.current.selectionEnd = caretPos + symbolToCat.length;
+    }, 1);
+
     //eslint-disable-next-line
   }, [symbolToCat]);
 
