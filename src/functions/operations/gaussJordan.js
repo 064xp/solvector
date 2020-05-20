@@ -88,6 +88,10 @@ const validateCols = matrix => {
       return `Invalid matrix, column ${i + 1} has no values`;
     }
   }
+
+  if (matrix.rows < matrix.cols - 1) {
+    return "Invalid matrix, there cannot be more variables than ecuations.";
+  }
   return null;
 };
 
