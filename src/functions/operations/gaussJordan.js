@@ -84,7 +84,7 @@ const validateCols = matrix => {
         counter++;
       }
     }
-    if (counter === matrix.rows) {
+    if (counter === matrix.rows && i !== matrix.cols - 1) {
       return `Invalid matrix, column ${i + 1} has no values`;
     }
   }
