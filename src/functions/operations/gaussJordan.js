@@ -90,7 +90,7 @@ const validateCols = matrix => {
   }
 
   if (matrix.rows < matrix.cols - 1) {
-    return "Invalid matrix, there cannot be more variables than ecuations.";
+    return "Invalid matrix, more variables than ecuations";
   }
   return null;
 };

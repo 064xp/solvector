@@ -36,17 +36,19 @@
 }
 .GJ-result {
   width: 50vw;
-  margin: auto;
+  margin: 0 auto 3rem auto;
   background: var(--light-grey);
-  padding: 1rem 0;
+  padding: 1rem 0.7rem;
   box-sizing: border-box;
   border-radius: 10px;
+  text-align: center;
 }
 
 .GJ-result h2 {
   font-weight: lighter;
   font-size: 1.6rem;
-  margin: 0 1.2rem;
+  margin: 0 0 0.2rem 0;
+  text-align: left;
 }
 
 .GJ-result_values {
@@ -65,7 +67,8 @@
   font-weight: normal;
   text-align: center;
   font-size: min(max(25px, 6vw), 30px);
-  margin: 0.5rem 1rem;
+  border-bottom: 0.2rem solid var(--primary-color);
+  display: inline;
 }
 
 @media only screen and (max-width: 1024px) {

@@ -34,9 +34,9 @@
 
 .home_solve-subtitle {
   margin: 1em 0 0.2em 0;
-  font-size: 1.7em;
   font-weight: lighter;
   color: var(--primary-darker);
+  font-size: min(max(25px, 5vw), 40px);
 }
 
 .home_card {
