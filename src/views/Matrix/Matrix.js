@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
-import { buildMatrix, fractionToString } from "../../functions/helperFunctions";
+import { buildMatrix } from "../../functions/helperFunctions";
+import { fractionToString } from "../../functions/fractions";
 import opList from "../../functions/opList";
 import InputBar from "../../components/InputBar/InputBar";
 import { infixToPostfix, constructTree } from "../../functions/expressionTree";
@@ -22,13 +23,13 @@ const Matrix = ({ defaultState = null }) => {
     const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
     let matricesTemp = matrices.map((matrix, index) => ({
       ...matrix,
-      id: alphabet[index]
+      id: alphabet[index],
     }));
     setMatrices([...matricesTemp]);
     //eslint-disable-next-line
   }, [matrices.length]);
 
-  const pushMatrix = matrix => {
+  const pushMatrix = (matrix) => {
     if (matrices.length < 26) {
       //max number of matrices is 26
       let matricesTemp = matrices;
@@ -63,7 +64,7 @@ const Matrix = ({ defaultState = null }) => {
     setMatrices([...matricesTemp]);
   };
 
-  const removeMatrix = index => {
+  const removeMatrix = (index) => {
     if (matrices.length === 1) {
       return;
     }
@@ -73,7 +74,7 @@ const Matrix = ({ defaultState = null }) => {
     setMatrices([...matricesTemp]);
   };
 
-  const onInputSubmit = input => {
+  const onInputSubmit = (input) => {
     if (input === "") {
       //Input is empty show error message
     } else {
@@ -110,7 +111,7 @@ const Matrix = ({ defaultState = null }) => {
       </div>
       <div className="matrix-view_input-container">
         <div className="matrix-view_input-buttons">
-          {opList.map(op =>
+          {opList.map((op) =>
             op.route === "/matrix" ? (
               <button
                 className={
@@ -168,7 +169,7 @@ const Matrix = ({ defaultState = null }) => {
 Matrix.propTypes = {
   operations: PropTypes.array.isRequired,
   selectedOperation: PropTypes.number,
-  selectOperation: PropTypes.func.isRequired
+  selectOperation: PropTypes.func.isRequired,
 };
 
 export default Matrix;

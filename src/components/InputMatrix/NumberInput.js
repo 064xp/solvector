@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import {
-  fractionToString,
-  stringToFraction
-} from "../../functions/helperFunctions";
+import { fractionToString, stringToFraction } from "../../functions/fractions";
 
-const NumberInput = props => {
+const NumberInput = (props) => {
   const { value, updateMatrix, row, col, index, readOnly } = props;
   const [localValue, setLocalValue] = useState("");
 
@@ -14,7 +11,7 @@ const NumberInput = props => {
     //eslint-disable-next-line
   }, [value]);
 
-  const validateAndUpdate = e => {
+  const validateAndUpdate = (e) => {
     if (!readOnly) {
       try {
         const value = stringToFraction(e.target.value);
@@ -35,11 +32,11 @@ const NumberInput = props => {
     <input
       type="text"
       value={localValue}
-      onChange={e => {
+      onChange={(e) => {
         setLocalValue(e.target.value);
       }}
       onBlur={validateAndUpdate.bind(this)}
-      onFocus={e => e.target.select()}
+      onFocus={(e) => e.target.select()}
       readOnly={readOnly}
     />
   );
@@ -51,7 +48,7 @@ NumberInput.propTypes = {
   row: PropTypes.number.isRequired,
   col: PropTypes.number.isRequired,
   readOnly: PropTypes.bool,
-  value: PropTypes.object.isRequired
+  value: PropTypes.object.isRequired,
 };
 
 export default NumberInput;

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./gaussJordan.css";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
-import { buildMatrix, fractionToString } from "../../functions/helperFunctions";
+import { fractionToString } from "../../functions/fractions";
+import { buildMatrix } from "../../functions/helperFunctions";
 import gaussJordan, {
-  getSolutions
+  getSolutions,
 } from "../../functions/operations/gaussJordan";
 
 const GaussJordan = ({ defaultMatrix }) => {
@@ -67,7 +68,7 @@ const GaussJordan = ({ defaultMatrix }) => {
 };
 
 GaussJordan.propTypes = {
-  defaultMatrix: PropTypes.object
+  defaultMatrix: PropTypes.object,
 };
 
 export default GaussJordan;

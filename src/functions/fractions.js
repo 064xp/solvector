@@ -1,4 +1,4 @@
-export const Fraction = function(numerator = 0, denominator = 1) {
+export const Fraction = function (numerator = 0, denominator = 1) {
   this.numerator = numerator;
   this.denominator = denominator === 0 ? 1 : denominator;
 };
@@ -36,7 +36,7 @@ export const divideFractions = (a, b) => {
   return result;
 };
 
-const simplifyFraction = fraction => {
+const simplifyFraction = (fraction) => {
   let i = 2;
 
   while (i <= Math.abs(fraction.numerator)) {
@@ -54,4 +54,34 @@ const simplifyFraction = fraction => {
     fraction.denominator = 1;
   }
   return fraction;
+};
+
+export const fractionToString = (fraction) => {
+  if (typeof fraction === "number") {
+    return String(fraction);
+  }
+
+  let str = String(fraction.numerator);
+  if (fraction.denominator !== 1) {
+    str += "/" + fraction.denominator;
+  }
+  return str;
+};
+
+export const stringToFraction = (str) => {
+  const split = str.split("/");
+  let value = new Fraction();
+
+  value.numerator = str ? Number(split[0]) : 0;
+  value.denominator = split.length < 2 ? 1 : Number(split[1]);
+
+  //If nested fraction is input for ex. 2/3/5
+  if (split.length > 2) {
+    throw new Error("Nested fractions are not supported.");
+  }
+
+  if (value.denominator === 0) {
+    throw new Error("Denominator cannot be 0.");
+  }
+  return value;
 };
