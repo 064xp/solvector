@@ -111,9 +111,10 @@ const Matrix = ({ defaultState = null }) => {
       </div>
       <div className="matrix-view_input-container">
         <div className="matrix-view_input-buttons">
-          {opList.map((op) =>
+          {opList.map((op, index) =>
             op.route === "/matrix" ? (
               <button
+                key={index}
                 className={
                   op.displaySize
                     ? `matrix-view_input-buttons-${op.displaySize}`
@@ -167,9 +168,7 @@ const Matrix = ({ defaultState = null }) => {
 };
 
 Matrix.propTypes = {
-  operations: PropTypes.array.isRequired,
-  selectedOperation: PropTypes.number,
-  selectOperation: PropTypes.func.isRequired,
+  defaultState: PropTypes.object,
 };
 
 export default Matrix;

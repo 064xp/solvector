@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const DimensionsInput = props => {
+const DimensionsInput = (props) => {
   const { rows, cols, index, setDimensions } = props;
 
   const onChangeHandler = (row, col) => {
@@ -19,16 +19,16 @@ const DimensionsInput = props => {
       <input
         type="number"
         value={String(rows)}
-        onChange={e => onChangeHandler(Number(e.target.value), cols)}
-        onFocus={e => e.target.select()}
+        onChange={(e) => onChangeHandler(Number(e.target.value), cols)}
+        onFocus={(e) => e.target.select()}
         inputMode="numeric"
       />
       <span>X</span>
       <input
         type="number"
         value={String(cols)}
-        onChange={e => onChangeHandler(rows, Number(e.target.value))}
-        onFocus={e => e.target.select()}
+        onChange={(e) => onChangeHandler(rows, Number(e.target.value))}
+        onFocus={(e) => e.target.select()}
         inputMode="numeric"
       />
     </div>
@@ -38,8 +38,8 @@ const DimensionsInput = props => {
 DimensionsInput.propTypes = {
   rows: PropTypes.number.isRequired,
   cols: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-  setDimensions: PropTypes.func.isRequired
+  index: PropTypes.number,
+  setDimensions: PropTypes.func.isRequired,
 };
 
 export default DimensionsInput;

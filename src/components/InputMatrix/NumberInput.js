@@ -44,7 +44,7 @@ const NumberInput = (props) => {
 
 NumberInput.propTypes = {
   updateMatrix: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
   row: PropTypes.number.isRequired,
   col: PropTypes.number.isRequired,
   readOnly: PropTypes.bool,

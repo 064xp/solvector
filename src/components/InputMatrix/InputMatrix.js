@@ -19,11 +19,11 @@ const InputMatrix = ({
   removeMatrix, //Function to remove matrix from matrix array at a certain index
   readOnly = false, //If the matrix is only to display results
   title, //Custom title of the matrix
-  augmentedAt //If it is an augmented matrix, before which column the matrix is augmented
+  augmentedAt, //If it is an augmented matrix, before which column the matrix is augmented
 }) => {
   const [prevDimension, setPrevDimension] = useState({
     rows: matrix.rows,
-    cols: matrix.cols
+    cols: matrix.cols,
   });
   const [isFocused, setFocus] = useState(false);
 
@@ -44,7 +44,7 @@ const InputMatrix = ({
 
       setPrevDimension({
         rows: matrix.rows,
-        cols: matrix.cols
+        cols: matrix.cols,
       });
     }
     //eslint-disable-next-line
@@ -78,8 +78,8 @@ const InputMatrix = ({
               <tr key={i}>
                 {matrix.matrix[i].map((num, j) => {
                   let returnVal = (
-                    <React.Fragment>
-                      <th key={j}>
+                    <React.Fragment key={j}>
+                      <th>
                         <NumberInput
                           value={matrix.matrix[i][j]}
                           updateMatrix={updateMatrix}
@@ -130,9 +130,9 @@ InputMatrix.propTypes = {
   matrix: PropTypes.object.isRequired,
   index: PropTypes.number,
   className: PropTypes.string,
-  matrixAmmount: PropTypes.number.isRequired,
+  matrixAmmount: PropTypes.number,
   readOnly: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 export default InputMatrix;
