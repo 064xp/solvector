@@ -95,12 +95,32 @@
 .GJ-solve-steps_step {
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   text-align: center;
   width: 27%;
   min-width: 260px;
   margin: 1em 0.5em 2em 0.5em;
+}
+
+.GJ-solve-steps_step-number {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-color);
+  color: white;
+  width: 2em;
+  height: 2em;
+  border-radius: 99px;
+  font-weight: bold;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.53);
 }
 
 .GJ-solve-steps_step-matrix {
