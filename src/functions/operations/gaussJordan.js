@@ -2,19 +2,30 @@ import {
   Fraction,
   divideFractions,
   addFractions,
-  multiplyFractions
+  multiplyFractions,
+  fractionToString,
 } from "../fractions";
 import { cloneMatrix } from "../helperFunctions";
 
-export const gaussJordan = matrix => {
+let result = {
+  result: [],
+  steps: [],
+};
+
+export const gaussJordan = (matrix) => {
   let pivot = 0;
   let validationFail = null;
   let resMatrix = cloneMatrix(matrix); //clone of the matrix to remove reference
   let modifier = new Fraction();
   let tempElement = new Fraction();
+  result = {
+    result: [],
+    steps: [],
+  };
 
   if ((validationFail = validateCols(matrix))) {
-    return validationFail;
+    result.result = validationFail;
+    return result;
   }
 
   //Swap rows in case first element is 0
@@ -26,11 +37,14 @@ export const gaussJordan = matrix => {
           resMatrix.matrix[i][j] = resMatrix.matrix[0][j];
           resMatrix.matrix[0][j] = tempElement;
         }
+        result.steps.push({
+          text: `M[0][0] is 0, change row 0 with row ${i}`,
+          matrix: cloneMatrix(resMatrix),
+        });
         break;
       }
     }
   }
-
   //Make current pivot 1
   for (let i = 0; i < resMatrix.rows; i++) {
     modifier = resMatrix.matrix[i][i];
@@ -40,22 +54,28 @@ export const gaussJordan = matrix => {
         modifier
       );
     }
+    result.steps.push({
+      text: `Make current pivot (${fractionToString(modifier)}) 1`,
+      matrix: cloneMatrix(resMatrix),
+    });
 
     //Make the rest of the column 0
     resMatrix = makeColZero(resMatrix, pivot);
-
     pivot++;
 
     if ((validationFail = validateMatrix(resMatrix))) {
-      return validationFail;
+      result.result = validationFail;
+      return result;
     }
   } //End for rows
-  return resMatrix;
-};
+  result.result = resMatrix;
+
+  return result;
+}; //end of gaussJordan main function
 
 //Additional helper functions
 
-const validateMatrix = matrix => {
+const validateMatrix = (matrix) => {
   let counter = 0;
 
   //validate last row
@@ -63,18 +83,20 @@ const validateMatrix = matrix => {
     if (matrix.matrix[matrix.rows - 1][j].numerator === 0) {
       counter++;
     }
-  } //End for
+  }
 
   if (counter >= matrix.cols - 1) {
-    if (matrix.matrix[matrix.rows - 1][matrix.cols - 1].numerator === 0) {
+    if (counter === matrix.cols) {
       return "The system has infinite solutions.";
-    } else {
+    } else if (
+      matrix.matrix[matrix.rows - 1][matrix.cols - 2].numerator === 0
+    ) {
       return "The system has no solutions.";
     }
   }
 };
 
-const validateCols = matrix => {
+const validateCols = (matrix) => {
   let counter = 0;
   //check for empty cols
   for (let i = 0; i < matrix.cols; i++) {
@@ -110,12 +132,16 @@ const makeColZero = (matrix, pivot) => {
         multiplyFractions(matrix.matrix[pivot][j], modifier)
       );
     }
+    result.steps.push({
+      text: `Make M[${pivot}][${i}] = 0`,
+      matrix: cloneMatrix(matrix),
+    });
   }
 
   return matrix;
 };
 
-export const getSolutions = reducedMatrix => {
+export const getSolutions = (reducedMatrix) => {
   if (typeof reducedMatrix === "string") {
     return reducedMatrix;
   }

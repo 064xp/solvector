@@ -11,6 +11,7 @@ import gaussJordan, {
 const GaussJordan = ({ defaultMatrix }) => {
   const [matrix, setMatrix] = useState(defaultMatrix);
   const [results, setResults] = useState(null);
+  const [steps, setSteps] = useState(null);
   const setDimensions = (rows, cols) => {
     setMatrix({ ...matrix, rows, cols });
   };
@@ -26,7 +27,9 @@ const GaussJordan = ({ defaultMatrix }) => {
   };
 
   const solve = () => {
-    const solutions = getSolutions(gaussJordan(matrix));
+    const result = gaussJordan(matrix);
+    const solutions = getSolutions(result.result);
+    setSteps(result.steps);
     setResults(solutions);
   };
 
@@ -53,7 +56,7 @@ const GaussJordan = ({ defaultMatrix }) => {
           {typeof results === "object" ? (
             <div className="GJ-result_values">
               {results.map((value, index) => (
-                <span>
+                <span key={index}>
                   X<sub>{index + 1}</sub> = {fractionToString(value)}
                 </span>
               ))}
@@ -61,6 +64,12 @@ const GaussJordan = ({ defaultMatrix }) => {
           ) : (
             <h3 className="GJ-text_result">{results}</h3>
           )}
+          {steps.map((step, i) => (
+            <React.Fragment key={i}>
+              <h1>{step.text}</h1>
+              <InputMatrix matrix={step.matrix} readOnly={true} />
+            </React.Fragment>
+          ))}
         </div>
       ) : null}
     </React.Fragment>

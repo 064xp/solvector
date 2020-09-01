@@ -43,7 +43,7 @@ const NumberInput = (props) => {
 };
 
 NumberInput.propTypes = {
-  updateMatrix: PropTypes.func.isRequired,
+  updateMatrix: PropTypes.func,
   index: PropTypes.number,
   row: PropTypes.number.isRequired,
   col: PropTypes.number.isRequired,

@@ -59,7 +59,8 @@ const InputMatrix = ({
       onMouseLeave={() => setFocus(false)}
     >
       <h1 className="input-matrix_name">
-        {title ? title : `Matrix ${matrix.id}`}
+        {title ? title : null}
+        {matrix.id && !title ? `Matrix ${matrix.id}` : null}
       </h1>
       {readOnly ? null : (
         <button
@@ -122,12 +123,12 @@ const InputMatrix = ({
 };
 
 InputMatrix.propTypes = {
-  updateMatrix: PropTypes.func.isRequired,
+  updateMatrix: PropTypes.func,
   addMatrix: PropTypes.func,
   removeMatrix: PropTypes.func,
-  setDimensions: PropTypes.func.isRequired,
-  setMatrix: PropTypes.func.isRequired,
-  matrix: PropTypes.object.isRequired,
+  setDimensions: PropTypes.func,
+  setMatrix: PropTypes.func,
+  matrix: PropTypes.object,
   index: PropTypes.number,
   className: PropTypes.string,
   matrixAmmount: PropTypes.number,
