@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./gaussJordan.css";
-import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { fractionToString } from "../../functions/fractions";
 import { buildMatrix } from "../../functions/helperFunctions";
 import gaussJordan, {
   getSolutions,
 } from "../../functions/operations/gaussJordan";
+
+import InputMatrix from "../../components/InputMatrix/InputMatrix";
+import ShowStepsButton from "../../components/ShowStepsButton/ShowStepsButton";
 
 const GaussJordan = ({ defaultMatrix }) => {
   const [matrix, setMatrix] = useState(defaultMatrix);
@@ -69,14 +71,10 @@ const GaussJordan = ({ defaultMatrix }) => {
                 <h3 className="GJ-text_result">{results}</h3>
               )}
             </div>
-            <button
-              className="btn_show-steps"
-              onClick={() => {
-                setShowSteps(!showSteps);
-              }}
-            >
-              {showSteps ? "Hide Steps" : "Show Steps"}
-            </button>
+            <ShowStepsButton
+              showSteps={showSteps}
+              setShowSteps={setShowSteps}
+            />
           </div>
 
           {showSteps ? (
@@ -84,7 +82,7 @@ const GaussJordan = ({ defaultMatrix }) => {
               {steps.map((step, i) => (
                 <div className="GJ-solve-steps_step" key={i}>
                   <h1>{step.text}</h1>
-                  <span className="GJ-solve-steps_step-number">{i}</span>
+                  <span className="GJ-solve-steps_step-number">{i + 1}</span>
                   <InputMatrix
                     matrix={step.matrix}
                     className={"GJ-solve-steps_step-matrix"}
