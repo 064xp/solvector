@@ -9,6 +9,8 @@
   margin: 0;
   padding: 0;
   border-radius: 999px;
+  transform: scale(0);
+  transition: transform 100ms ease-in-out;
 }
 
 .backToTopButton:hover {
@@ -17,4 +19,8 @@
 
 .backToTopButton img {
   width: 50%;
+}
+
+.backToTopButton-show {
+  transform: scale(1);
 }

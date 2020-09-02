@@ -5,7 +5,6 @@ export const throttle = (func, duration) => {
   return function (...args) {
     if (!shouldWait) {
       func.apply(this, args);
-
       shouldWait = true;
 
       setTimeout(function () {

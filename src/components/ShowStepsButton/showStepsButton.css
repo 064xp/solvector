@@ -20,13 +20,13 @@
   position: absolute;
   bottom: 0;
   transform: translateX(50%);
-  transform: scaleX(0%);
+  transform: scaleX(0);
   transition: transform 100ms linear;
 }
 
 .btn_show-steps:hover::before {
   transform: translateX(0);
-  transform: scaleX(100%);
+  transform: scaleX(1);
 }
 
 .btn_show-steps img {
