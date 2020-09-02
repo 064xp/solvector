@@ -125,8 +125,8 @@
 }
 
 @media only screen and (max-width: 1024px) {
-  .GJ-result {
-    width: 80vw;
+  .GJ-result_wrapper {
+    width: 90vw;
   }
 
   .GJ-input_matrix {
@@ -139,5 +139,9 @@
 
   .GJ-btn_solve {
     width: 70%;
+  }
+
+  .GJ-solve-steps_step-number {
+    left: -20px;
   }
 }
