@@ -5,7 +5,7 @@ import {
   multiplyFractions,
   fractionToString,
 } from "../fractions";
-import { cloneMatrix } from "../helperFunctions";
+import { cloneMatrix } from "../matrixHelperFunctions";
 
 let result = {
   result: [],

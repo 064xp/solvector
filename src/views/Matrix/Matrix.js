@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
-import { buildMatrix } from "../../functions/helperFunctions";
+import { buildMatrix } from "../../functions/matrixHelperFunctions";
 import { fractionToString } from "../../functions/fractions";
 import opList from "../../functions/opList";
 import InputBar from "../../components/InputBar/InputBar";

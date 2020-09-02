@@ -1,8 +1,8 @@
 import {
   buildMatrix,
   cloneMatrix,
-  changeMatrixDimensions
-} from "../helperFunctions";
+  changeMatrixDimensions,
+} from "../matrixHelperFunctions";
 import { gaussJordan } from "./gaussJordan";
 import { isFunction, isOperator } from "../expressionTree";
 import {
@@ -10,7 +10,7 @@ import {
   subtractFractions,
   multiplyFractions,
   divideFractions,
-  Fraction
+  Fraction,
 } from "../fractions";
 
 const operations = {
@@ -70,7 +70,7 @@ const operations = {
     return result;
   }, //end matrix multiplication
   //Calculate matrix determinant
-  det: matrix => {
+  det: (matrix) => {
     let determinant = matrix.matrix[0][0];
     let upperTriangular = makeUpperTriangular(matrix);
 
@@ -84,7 +84,7 @@ const operations = {
     return determinant;
   },
   //Calculate inverse matrix
-  inv: matrix => {
+  inv: (matrix) => {
     let augmentedMatrix = cloneMatrix(matrix);
     let inverse = buildMatrix(matrix.rows, matrix.cols);
     let determinant = operations.det(matrix);
@@ -117,7 +117,7 @@ const operations = {
     return inverse;
   },
   //Calculate matrix trace
-  tr: matrix => {
+  tr: (matrix) => {
     let trace = new Fraction(0);
 
     for (let i = 0; i < matrix.rows; i++) {
@@ -155,8 +155,8 @@ const operations = {
         throw new Error("Cannot divide matrices");
       }
       return divideFractions(scalar, scalar2);
-    } //end scalar division
-  }
+    }, //end scalar division
+  },
 };
 
 /*
@@ -228,7 +228,7 @@ const makeZeroBelow = (matrix, pivot) => {
   return matrix;
 };
 
-const makeUpperTriangular = matrix => {
+const makeUpperTriangular = (matrix) => {
   let temp = cloneMatrix(matrix);
   for (let i = 0; i < matrix.rows; i++) {
     temp = makeZeroBelow(temp, i);

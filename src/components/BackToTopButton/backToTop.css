@@ -1,0 +1,20 @@
+.backToTopButton {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  height: 5em;
+  width: 5em;
+  background: var(--primary-color);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.backToTopButton:hover {
+  background: var(--primary-darker);
+}
+
+.backToTopButton img {
+  width: 50%;
+}

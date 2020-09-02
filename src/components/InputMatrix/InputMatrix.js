@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import DimensionsInput from "./DimensionsInput";
 import NumberInput from "./NumberInput";
-import { changeMatrixDimensions } from "../../functions/helperFunctions";
+import { changeMatrixDimensions } from "../../functions/matrixHelperFunctions";
 import SvgPlusSolid from "../../assets/SvgPlusSolid.js";
 import SvgMinusSolid from "../../assets/SvgMinusSolid.js";
 import "./inputMatrix.css";

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./gaussJordan.css";
 import { fractionToString } from "../../functions/fractions";
-import { buildMatrix } from "../../functions/helperFunctions";
+import { buildMatrix } from "../../functions/matrixHelperFunctions";
 import gaussJordan, {
   getSolutions,
 } from "../../functions/operations/gaussJordan";
 
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import ShowStepsButton from "../../components/ShowStepsButton/ShowStepsButton";
+import BackToTopButton from "../../components/BackToTopButton/BackToTopButton";
 
 const GaussJordan = ({ defaultMatrix }) => {
   const [matrix, setMatrix] = useState(defaultMatrix);
@@ -39,6 +40,7 @@ const GaussJordan = ({ defaultMatrix }) => {
   return (
     <React.Fragment>
       <div className="GJ-input_container">
+        <BackToTopButton />
         <InputMatrix
           matrix={matrix}
           setMatrix={setMatrix}
