@@ -16,10 +16,11 @@ const BackToTop = (props) => {
         passive: true,
       });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const scrollHandler = () => {
-    const throttleDuration = 350; //delay between calls
+    const throttleDuration = 250; //delay between calls
     if (
       Date.now() - lastHandlerCall >= throttleDuration ||
       lastHandlerCall === null
