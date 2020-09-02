@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
+import BackToTopButton from "../../components/BackToTopButton/BackToTopButton";
 import { buildMatrix } from "../../functions/matrixHelperFunctions";
 import { fractionToString } from "../../functions/fractions";
 import opList from "../../functions/opList";
@@ -93,6 +94,7 @@ const Matrix = ({ defaultState = null }) => {
 
   return (
     <div className="matrix-view">
+      <BackToTopButton />
       <div className="matrix_matrices-container">
         {matrices.map((matrix, i) => (
           <InputMatrix
