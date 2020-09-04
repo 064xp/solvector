@@ -5,7 +5,7 @@ export const buildMatrix = (rows, cols) => {
     matrix: [],
     rows,
     cols,
-    id: ""
+    id: "",
   };
 
   let row;
@@ -37,6 +37,28 @@ export const changeMatrixDimensions = (matrix, prevRows, prevCols) => {
   return newMatrix;
 };
 
-export const cloneMatrix = matrix => {
+export const cloneMatrix = (matrix) => {
   return JSON.parse(JSON.stringify(matrix));
+};
+
+//Check if an array is in another multidimensional Array
+//ex. [2,1] in [[2,1], [2,2]] => true
+export const isCellInArray = (cell, array) => {
+  const joinedItem = cell.join(",");
+
+  for (let i = 0; i < array.length; i++) {
+    const joinedCurrent = array[i].join(",");
+    if (joinedItem === joinedCurrent) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const highlightRow = (row, matrixCols) => {
+  let cellArray = [];
+  for (let i = 0; i < matrixCols; i++) {
+    cellArray.push([row, i]);
+  }
+  return cellArray;
 };

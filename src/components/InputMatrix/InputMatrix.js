@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import DimensionsInput from "./DimensionsInput";
 import NumberInput from "./NumberInput";
-import { changeMatrixDimensions } from "../../functions/matrixHelperFunctions";
+import {
+  changeMatrixDimensions,
+  isCellInArray,
+} from "../../functions/matrixHelperFunctions";
 import SvgPlusSolid from "../../assets/SvgPlusSolid.js";
 import SvgMinusSolid from "../../assets/SvgMinusSolid.js";
 import "./inputMatrix.css";
@@ -20,7 +23,6 @@ const InputMatrix = ({
   readOnly = false, //If the matrix is only to display results
   title, //Custom title of the matrix
   augmentedAt, //If it is an augmented matrix, before which column the matrix is augmented
-  highlightCells, //array of cells to highlight
 }) => {
   const [prevDimension, setPrevDimension] = useState({
     rows: matrix.rows,
@@ -80,8 +82,8 @@ const InputMatrix = ({
               <tr key={i}>
                 {matrix.matrix[i].map((num, j) => {
                   let currentCell = [i, j];
-                  let isHighlighted = highlightCells
-                    ? highlightCells.includes(currentCell)
+                  let isHighlighted = matrix.highlightedCells
+                    ? isCellInArray(currentCell, matrix.highlightedCells)
                     : false;
 
                   let returnVal = (
@@ -146,7 +148,6 @@ InputMatrix.propTypes = {
   matrixAmmount: PropTypes.number,
   readOnly: PropTypes.bool,
   title: PropTypes.string,
-  highlightCells: PropTypes.array,
 };
 
 export default InputMatrix;

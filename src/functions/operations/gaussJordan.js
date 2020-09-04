@@ -5,7 +5,7 @@ import {
   multiplyFractions,
   fractionToString,
 } from "../fractions";
-import { cloneMatrix } from "../matrixHelperFunctions";
+import { cloneMatrix, highlightRow } from "../matrixHelperFunctions";
 
 let result = {
   result: [],
@@ -39,7 +39,10 @@ export const gaussJordan = (matrix) => {
         }
         result.steps.push({
           text: `M[0][0] is 0, change row 0 with row ${i}`,
-          matrix: cloneMatrix(resMatrix),
+          matrix: {
+            ...cloneMatrix(resMatrix),
+            highlightedCells: [...highlightRow(i, resMatrix.cols)],
+          },
         });
         break;
       }
@@ -56,7 +59,7 @@ export const gaussJordan = (matrix) => {
     }
     result.steps.push({
       text: `Make current pivot (${fractionToString(modifier)}) 1`,
-      matrix: cloneMatrix(resMatrix),
+      matrix: { ...cloneMatrix(resMatrix), highlightedCells: [[pivot, pivot]] },
     });
 
     //Make the rest of the column 0
@@ -133,8 +136,8 @@ const makeColZero = (matrix, pivot) => {
       );
     }
     result.steps.push({
-      text: `Make M[${pivot}][${i}] = 0`,
-      matrix: cloneMatrix(matrix),
+      text: `Make M[${i}][${pivot}] = 0`,
+      matrix: { ...cloneMatrix(matrix), highlightedCells: [[i, pivot]] },
     });
   }
 
