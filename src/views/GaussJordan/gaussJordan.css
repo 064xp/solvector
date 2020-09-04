@@ -75,55 +75,6 @@
   display: inline;
 }
 
-.GJ-solve-steps {
-  background: var(--light-grey);
-  border-radius: 10px;
-  width: 90vw;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.GJ-solve-steps_step h1 {
-  font-size: min(max(20px, 2vw), 30px);
-}
-
-.GJ-solve-steps_step {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  width: 27%;
-  min-width: 260px;
-  margin: 1em 0.5em 2em 0.5em;
-}
-
-.GJ-solve-steps_step-number {
-  position: absolute;
-  left: 0;
-  top: 20%;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--primary-color);
-  color: white;
-  width: 2em;
-  height: 2em;
-  border-radius: 99px;
-  font-weight: bold;
-  font-size: 1.4em;
-  box-sizing: border-box;
-  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.53);
-}
-
-.GJ-solve-steps_step-matrix {
-  height: 22vh;
-}
-
 @media only screen and (max-width: 1024px) {
   .GJ-result_wrapper {
     width: 90vw;
@@ -139,9 +90,5 @@
 
   .GJ-btn_solve {
     width: 70%;
-  }
-
-  .GJ-solve-steps_step-number {
-    left: -20px;
   }
 }
