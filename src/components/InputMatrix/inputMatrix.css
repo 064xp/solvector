@@ -140,6 +140,14 @@ button svg {
   align-items: center;
 }
 
+.input-matrix_input-highlighted {
+  background-color: var(--primary-color) !important;
+  border-radius: 9px !important;
+}
+.input-matrix_input-highlighted input {
+  color: white;
+}
+
 @media only screen and (max-width: 500px) {
   .matrix-view_add-btn {
     top: initial;

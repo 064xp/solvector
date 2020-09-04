@@ -20,6 +20,7 @@ const InputMatrix = ({
   readOnly = false, //If the matrix is only to display results
   title, //Custom title of the matrix
   augmentedAt, //If it is an augmented matrix, before which column the matrix is augmented
+  highlightCells, //array of cells to highlight
 }) => {
   const [prevDimension, setPrevDimension] = useState({
     rows: matrix.rows,
@@ -78,9 +79,20 @@ const InputMatrix = ({
             {matrix.matrix.map((row, i) => (
               <tr key={i}>
                 {matrix.matrix[i].map((num, j) => {
+                  let currentCell = [i, j];
+                  let isHighlighted = highlightCells
+                    ? highlightCells.includes(currentCell)
+                    : false;
+
                   let returnVal = (
                     <React.Fragment key={j}>
-                      <th>
+                      <th
+                        className={
+                          isHighlighted
+                            ? "input-matrix_input-highlighted"
+                            : null
+                        }
+                      >
                         <NumberInput
                           value={matrix.matrix[i][j]}
                           updateMatrix={updateMatrix}
@@ -134,6 +146,7 @@ InputMatrix.propTypes = {
   matrixAmmount: PropTypes.number,
   readOnly: PropTypes.bool,
   title: PropTypes.string,
+  highlightCells: PropTypes.array,
 };
 
 export default InputMatrix;
