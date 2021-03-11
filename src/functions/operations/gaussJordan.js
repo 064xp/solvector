@@ -17,39 +17,21 @@ export const gaussJordan = (matrix) => {
   let validationFail = null;
   let resMatrix = cloneMatrix(matrix); //clone of the matrix to remove reference
   let modifier = new Fraction();
-  let tempElement = new Fraction();
   result = {
     result: [],
     steps: [],
   };
 
+  //Make sure no columns are just 0
   if ((validationFail = validateCols(matrix))) {
     result.result = validationFail;
     return result;
   }
 
-  //Swap rows in case first element is 0
-  if (resMatrix.matrix[0][0].numerator === 0) {
-    for (let i = 1; i <= resMatrix.rows; i++) {
-      if (resMatrix.matrix[i][0].numerator !== 0) {
-        for (let j = 0; j < resMatrix.cols; j++) {
-          tempElement = resMatrix.matrix[i][j];
-          resMatrix.matrix[i][j] = resMatrix.matrix[0][j];
-          resMatrix.matrix[0][j] = tempElement;
-        }
-        result.steps.push({
-          text: `M[0][0] is 0, change row 0 with row ${i}`,
-          matrix: {
-            ...cloneMatrix(resMatrix),
-            highlightedCells: [...highlightRow(i, resMatrix.cols)],
-          },
-        });
-        break;
-      }
-    }
-  }
-  //Make current pivot 1
   for (let i = 0; i < resMatrix.rows; i++) {
+    //Swap rows if current pivot is 0
+    swapRows(resMatrix, pivot);
+    //Make current pivot 1
     modifier = resMatrix.matrix[i][i];
     for (let j = 0; j < resMatrix.cols; j++) {
       resMatrix.matrix[i][j] = divideFractions(
@@ -76,8 +58,9 @@ export const gaussJordan = (matrix) => {
   return result;
 }; //end of gaussJordan main function
 
-//Additional helper functions
-
+/*
+  Additional helper functions
+*/
 const validateMatrix = (matrix) => {
   let counter = 0;
 
@@ -142,6 +125,38 @@ const makeColZero = (matrix, pivot) => {
   }
 
   return matrix;
+};
+
+const swapRows = (resMatrix, pivot) => {
+  let tempElement = new Fraction();
+  //if the current pivot is 0
+  if (resMatrix.matrix[pivot][pivot].numerator === 0) {
+    //for every row after the pivot row
+    for (let i = pivot; i < resMatrix.rows; i++) {
+      //if the 0 pivot is on the last row
+      if (i === resMatrix.rows) {
+        break;
+      }
+
+      //if the number in the same column as the pivot on that row is not 0
+      if (resMatrix.matrix[i][pivot].numerator !== 0) {
+        // swap the rows
+        for (let j = 0; j < resMatrix.cols; j++) {
+          tempElement = resMatrix.matrix[i][j];
+          resMatrix.matrix[i][j] = resMatrix.matrix[pivot][j];
+          resMatrix.matrix[pivot][j] = tempElement;
+        }
+        result.steps.push({
+          text: `M[${pivot}][${pivot}] is 0, change row ${pivot} with row ${i}`,
+          matrix: {
+            ...cloneMatrix(resMatrix),
+            highlightedCells: [...highlightRow(i, resMatrix.cols)],
+          },
+        });
+        break;
+      }
+    }
+  }
 };
 
 export const getSolutions = (reducedMatrix) => {
