@@ -8,8 +8,6 @@
 
 .GJ-input_matrix {
   width: 35vw;
-  height: 30vh;
-  min-height: 220px;
   margin: auto;
 }
 
@@ -27,7 +25,6 @@
 @media only screen and (max-width: 1350px) {
   .GJ-input_matrix {
     width: 60vw;
-    height: 30vh;
   }
 
   .GJ-btn_solve {
@@ -82,7 +79,6 @@
 
   .GJ-input_matrix {
     width: 84vw;
-    height: 30vh;
   }
   .GJ-result_values span {
     margin: 1rem min(max(3px, 3vw), 10px);
